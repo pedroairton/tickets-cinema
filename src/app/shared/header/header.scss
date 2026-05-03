@@ -1,0 +1,28 @@
+header{
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    padding: 1rem 10%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-color: #d42124;
+    nav{
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+    }
+    .login{
+        button{
+            background-color: white;
+            font-weight: 700;
+            color: #DD0A0A;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            text-transform: uppercase;
+        }
+    }
+}
