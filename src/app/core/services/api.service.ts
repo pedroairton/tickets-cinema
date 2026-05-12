@@ -8,8 +8,8 @@ import { environment } from '../../../environments/environment';
 export class ApiService {
   private apiUrl = environment.apiUrl;
   constructor(private http: HttpClient) {}
-  getScreenings(){
+  getScreeningsByDate(date: string) {
     console.log(this.apiUrl);
-    return this.http.get(`${this.apiUrl}/screenings`);
+    return this.http.get(`${this.apiUrl}/screenings/by-date?date=${date}`);
   }
 }
