@@ -36,6 +36,11 @@
         padding: 1rem;
         border: solid 1px #404040;
         border-radius: 10px;
+        transition: .3s;
+        &:hover{
+            border-color: #DD0A0A;
+            background-color: #303030;
+        }
         .img{
             width: 25%;
             img{

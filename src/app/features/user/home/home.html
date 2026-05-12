@@ -69,7 +69,7 @@
           </div>
           <div class="infos-filme">
             <h3 class="nome-filme">{{ movie.title }}<span class="duracao-filme">{{ convertMinutes(movie.duration_minutes) }}</span></h3>
-            <small class="genero-filme">{{ movie.genre_ids }}</small>
+            <small class="genero-filme">{{ movie.genres.map((genre) => genre.name).join(', ') }}</small>
             <p class="sinopse-filme">
               {{ movie.synopsis }}
             </p>

@@ -13,7 +13,7 @@ export type Movie = {
     country_of_origin?: string;
     release_date?: string;
     status: string;
-    genre_ids: number[];
+    genres: Genre[];
     available_screenings?: Screening[]
 }
 
@@ -26,4 +26,10 @@ export type Screening = {
     end_time: string;
     price: number;
 
+}
+
+export type Genre = {
+    id: number;
+    name: string;
+    slug: string;
 }
