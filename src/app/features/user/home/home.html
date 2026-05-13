@@ -2,7 +2,6 @@
   <div class="data">
     <h2>Escolha uma data</h2>
     <div class="conteudo-data">
-      <!-- <h1>03/05</h1> -->
       <h1>{{ today.split('-')[2] }}/{{ today.split('-')[1] }}</h1>
       <input type="date" name="" id="" />
     </div>
@@ -11,54 +10,6 @@
     <!-- date pipe -->
     <h2>Sessões disponíveis em {{ today | date: 'dd/MM/yyyy' }}</h2>
     <div class="conteudo-sessoes">
-      <div class="sessao">
-        <div class="img">
-          <img
-            src="https://m.media-amazon.com/images/M/MV5BMjA4MDU0NTUyN15BMl5BanBnXkFtZTgwMzQxMzY4MjE@._V1_.jpg"
-            alt="Imagem do filme"
-          />
-        </div>
-        <div class="infos-filme">
-          <h3 class="nome-filme">Nome do filme<span class="duracao-filme">1h29m</span></h3>
-          <small class="genero-filme">Gênero</small>
-          <p class="sinopse-filme">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe, animi quod perspiciatis
-            in culpa eveniet?
-          </p>
-          <div class="horarios">
-            <button>13:00</button>
-            <button>15:45</button>
-            <button>19:15</button>
-            <button>20:00</button>
-            <button>22:30</button>
-            <button>23:30</button>
-          </div>
-        </div>
-      </div>
-      <div class="sessao">
-        <div class="img">
-          <img
-            src="https://m.media-amazon.com/images/M/MV5BMjA4MDU0NTUyN15BMl5BanBnXkFtZTgwMzQxMzY4MjE@._V1_.jpg"
-            alt="Imagem do filme"
-          />
-        </div>
-        <div class="infos-filme">
-          <h3 class="nome-filme">Nome do filme<span class="duracao-filme">1h29m</span></h3>
-          <small class="genero-filme">Gênero</small>
-          <p class="sinopse-filme">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe, animi quod perspiciatis
-            in culpa eveniet?
-          </p>
-          <div class="horarios">
-            <button>13:00</button>
-            <button>15:45</button>
-            <button>19:15</button>
-            <button>20:00</button>
-            <button>22:30</button>
-            <button>23:30</button>
-          </div>
-        </div>
-      </div>
       @for (movie of movies(); track movie.id) {
         <div class="sessao">
           <div class="img">

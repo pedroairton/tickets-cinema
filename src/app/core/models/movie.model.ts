@@ -4,6 +4,7 @@ export type Movie = {
     slug: string;
     synopsis: string;
     duration_minutes: number;
+    formatted_duration?: string;
     age_rating: string;
     image_url?: string;
     trailer_url?: string;

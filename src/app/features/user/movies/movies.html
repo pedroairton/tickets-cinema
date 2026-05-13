@@ -1,1 +1,26 @@
-<p>movies works!</p>
+<article class="page-movies">
+  <h1>Lista de filmes</h1>
+  <div class="filtros">
+    <input type="text" />
+    <select formControlName="genre" name="" id="">
+      <option value="" selected disabled>Todos</option>
+      @for (genre of genres(); track genre.id) {
+        <option value="{{ genre.id }}">{{ genre.name }}</option>
+      }
+    </select>
+  </div>
+  <div class="grid-filmes">
+    @if (movies().length > 0) {
+        @for (movie of movies(); track movie.id) {
+            <a [routerLink]="movie.slug" class="filme">
+                <img [src]="movie.image_url" [alt]="movie.title">
+                <div class="infos">
+                    <h3>{{ movie.title }}</h3>
+                </div>
+            </a>
+        }
+    } @else {
+        <h2>Nenhum filme encontrado</h2>
+    }
+  </div>
+</article>

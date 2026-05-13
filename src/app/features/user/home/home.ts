@@ -2,6 +2,7 @@ import { Component, inject, signal } from '@angular/core';
 import { ApiService } from '../../../core/services/api.service';
 import { DatePipe } from '@angular/common';
 import { Movie } from '../../../core/models/movie.model';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-home',
@@ -11,6 +12,7 @@ import { Movie } from '../../../core/models/movie.model';
 })
 export class Home {
   private apiService = inject(ApiService);
+  private toastr = inject(ToastrService);
   today = this.formatDate(new Date());
   movies = signal<Movie[]>([]);
 
@@ -24,6 +26,7 @@ export class Home {
       },
       error: (err) => {
         console.log(err);
+        this.toastr.error('Erro ao carregar os filmes');
       },
     });
   }
