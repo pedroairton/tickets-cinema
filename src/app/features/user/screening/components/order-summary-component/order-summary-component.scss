@@ -1,0 +1,76 @@
+.summary-card {
+  background: #1f2937;
+  border-radius: 12px;
+  padding: 1.5rem;
+
+  h3 {
+    color: #f9fafb;
+    margin: 0 0 1rem;
+    font-size: 1rem;
+  }
+}
+
+.empty-state {
+  text-align: center;
+  padding: 1rem;
+
+  p {
+    color: #6b7280;
+    font-size: 0.875rem;
+  }
+}
+
+.selected-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.selected-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0.75rem;
+  background: #111827;
+  border-radius: 8px;
+
+  .seat-label {
+    color: #d1d5db;
+    font-size: 0.875rem;
+  }
+
+  .seat-price {
+    color: #9ca3af;
+    font-size: 0.875rem;
+  }
+}
+
+.divider {
+  border: none;
+  border-top: 1px solid #374151;
+  margin: 1rem 0;
+}
+
+.summary-totals {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  .total-row {
+    display: flex;
+    justify-content: space-between;
+    color: #9ca3af;
+    font-size: 0.875rem;
+  }
+
+  .total-final {
+    color: #f9fafb;
+    font-size: 1.1rem;
+    font-weight: 700;
+    padding-top: 0.5rem;
+
+    span:last-child {
+      color: #34d399;
+    }
+  }
+}

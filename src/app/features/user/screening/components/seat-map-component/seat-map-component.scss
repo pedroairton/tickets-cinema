@@ -1,0 +1,139 @@
+.seat-map-container {
+  background: #111827;
+  border-radius: 12px;
+  padding: 2rem;
+
+  h3 {
+    text-align: center;
+    color: #f9fafb;
+    margin: 0 0 1.5rem;
+    font-size: 1.1rem;
+  }
+}
+
+// Tela
+.screen {
+  width: 70%;
+  margin: 0 auto 2rem;
+  padding: 0.5rem;
+  background: linear-gradient(180deg, #6366f1 0%, transparent 100%);
+  border-radius: 4px 4px 50% 50%;
+  text-align: center;
+
+  span {
+    font-size: 0.7rem;
+    color: #a5b4fc;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+  }
+}
+
+// Grid de assentos
+.seat-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.seat-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  .row-label {
+    width: 20px;
+    text-align: center;
+    font-size: 0.75rem;
+    color: #6b7280;
+    font-weight: 600;
+  }
+
+  .row-seats {
+    display: flex;
+    gap: 4px;
+  }
+}
+
+// Assentos
+.seat {
+  width: 32px;
+  height: 32px;
+  border-radius: 6px 6px 3px 3px;
+  border: none;
+  cursor: pointer;
+  font-size: 0.65rem;
+  font-weight: 600;
+  transition: all 0.15s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &.available {
+    background: #374151;
+    color: #9ca3af;
+
+    &:hover {
+      background: #4b5563;
+      transform: scale(1.1);
+    }
+  }
+
+  &.selected {
+    background: #6366f1;
+    color: #fff;
+    box-shadow: 0 0 8px rgba(99, 102, 241, 0.5);
+    transform: scale(1.1);
+  }
+
+  &.occupied {
+    background: #1f2937;
+    color: #374151;
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+}
+
+// Legenda
+.seat-legend {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8rem;
+    color: #9ca3af;
+  }
+
+  .legend-dot {
+    width: 16px;
+    height: 16px;
+    border-radius: 4px;
+
+    &.available { background: #374151; }
+    &.selected  { background: #6366f1; }
+    &.occupied  { background: #1f2937; opacity: 0.5; }
+  }
+}
+
+// Responsivo
+@media (max-width: 640px) {
+  .seat {
+    width: 26px;
+    height: 26px;
+    font-size: 0.55rem;
+  }
+
+  .seat-row .row-seats {
+    gap: 2px;
+  }
+
+  .seat-legend {
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+}

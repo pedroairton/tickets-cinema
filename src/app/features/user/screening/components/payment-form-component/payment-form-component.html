@@ -1,0 +1,54 @@
+<div class="payment-container">
+  <h3>Forma de Pagamento</h3>
+
+  <!-- Opções de pagamento -->
+  <div class="payment-options">
+    @for (option of paymentOptions; track option.label) {
+      <button
+        class="payment-option"
+        [class.selected]="selectedMethod() === option.value"
+        (click)="selectMethod(option.value)"
+        [disabled]="isSubmitting"
+      >
+        <div class="option-info">
+          <span class="option-label">{{ option.label }}</span>
+        </div>
+        @if (selectedMethod() === option.value) {
+          <span class="option-check">✓</span>
+        }
+      </button>
+    }
+  </div>
+
+  <!-- Total -->
+  <div class="payment-total">
+    <span>Total a pagar:</span>
+    <span class="total-value">R$ {{ totalPrice.toFixed(2) }}</span>
+  </div>
+
+  <!-- Ações -->
+  <div class="payment-actions">
+    <button
+      class="btn btn-outline"
+      (click)="onGoBack()"
+      [disabled]="isSubmitting"
+    >
+      ← Voltar aos Assentos
+    </button>
+    <button
+      class="btn btn-success"
+      [disabled]="!selectedMethod() || isSubmitting"
+      (click)="onSubmit()"
+    >
+    @if (!isSubmitting) {
+
+      <span>Confirmar Pagamento</span>
+    } @else {
+      <span class="btn-loading">
+        <span class="spinner-sm"></span>
+        Processando...
+      </span>
+    }
+    </button>
+  </div>
+</div>

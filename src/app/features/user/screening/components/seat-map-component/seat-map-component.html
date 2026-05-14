@@ -1,0 +1,63 @@
+<div class="seat-map-container">
+  <h3>Escolha seus assentos</h3>
+
+  <!-- Tela do cinema -->
+  <div class="screen">
+    <span>TELA</span>
+  </div>
+
+  <!-- Mapa -->
+  <div class="seat-grid">
+    <!-- <div class="seat-row" *ngFor="let row of rows">
+      <span class="row-label">{{ row }}</span>
+
+      <div class="row-seats">
+        <button
+          *ngFor="let seat of getSeatsForRow(row)"
+          [class]="getSeatClass(seat)"
+          [disabled]="seat.is_occupied"
+          [title]="seat.is_occupied ? 'Ocupado' : seat.label"
+          (click)="onSeatClick(seat)"
+        >
+          {{ seat.column_number }}
+        </button>
+      </div>
+
+      <span class="row-label">{{ row }}</span>
+    </div> -->
+    @for (row of rows; track row) {
+      <div class="seat-row">
+        <span class="row-label">{{ row }}</span>
+        <div class="row-seats">
+          @for (seat of getSeatsForRow(row); track seat) {
+            <button
+              class="{{ getSeatClass(seat) }}"
+              [disabled]="seat.is_occupied"
+              [title]="seat.is_occupied ? 'Ocupado' : seat.row_label + seat.column_number"
+              (click)="onSeatClick(seat)"
+            >
+              {{ seat.column_number }}
+            </button>
+          }
+        </div>
+        <span class="row-label">{{ row }}</span>
+      </div>
+    }
+  </div>
+
+  <!-- Legenda -->
+  <div class="seat-legend">
+    <div class="legend-item">
+      <span class="legend-dot available"></span>
+      <span>Disponível</span>
+    </div>
+    <div class="legend-item">
+      <span class="legend-dot selected"></span>
+      <span>Selecionado</span>
+    </div>
+    <div class="legend-item">
+      <span class="legend-dot occupied"></span>
+      <span>Ocupado</span>
+    </div>
+  </div>
+</div>

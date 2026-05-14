@@ -3,6 +3,10 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { Movie } from '../models/movie.model';
 import { Observable } from 'rxjs';
+import { MovieScreeningResponse } from '../models/responses.model';
+import { ScreeningDetail } from '../../features/user/screening/screening-detail/screening-detail';
+import { SeatMapResponse } from '../models/seat.model';
+import { CreateOrderRequest, OrderResponse } from '../models/order.model';
 
 @Injectable({
   providedIn: 'root',
@@ -23,4 +27,17 @@ export class ApiService {
   getMovie(slug: string): Observable<Movie> {
     return this.http.get<Movie>(`${this.apiUrl}/movies/${slug}`);
   }
+  getMovieScreenings(slug: string): Observable<MovieScreeningResponse> {
+    return this.http.get<MovieScreeningResponse>(`${this.apiUrl}/movies/${slug}/screenings`);
+  }
+  getScreening(id: number): Observable<ScreeningDetail> {
+    return this.http.get<ScreeningDetail>(`${this.apiUrl}/screenings/${id}`);
+  }
+  getSeatMap(id: number): Observable<SeatMapResponse> {
+    return this.http.get<SeatMapResponse>(`${this.apiUrl}/screenings/${id}/seats`);
+  }
+  createOrder(data: CreateOrderRequest) {
+    return this.http.post<OrderResponse>(`${this.apiUrl}/orders`, data);
+  }
+
 }

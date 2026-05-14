@@ -1,4 +1,4 @@
-export type Movie = {
+export interface Movie {
     id: number;
     title: string;
     slug: string;
@@ -18,19 +18,25 @@ export type Movie = {
     available_screenings?: Screening[]
 }
 
-export type Screening = {
+export interface Screening {
     id: number;
     movie_id: number;
     room_id: number;
-    room_name: string;
+    room: string;
     start_time: string;
     end_time: string;
     price: number;
 
 }
 
-export type Genre = {
+export interface Genre {
     id: number;
     name: string;
     slug: string;
+}
+
+export interface MovieDate {
+  date: string;
+  formatted: string;
+  screenings: Screening[];
 }

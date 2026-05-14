@@ -31,6 +31,10 @@ export const routes: Routes = [
                 loadComponent: () => import('./features/user/history/history').then(m => m.History)
             },
             {
+                path: 'sessoes/:id',
+                loadComponent: () => import ('./features/user/screening/screening-detail/screening-detail').then(m => m.ScreeningDetail)
+            },
+            {
                 path: '**',
                 redirectTo: 'home'
             }

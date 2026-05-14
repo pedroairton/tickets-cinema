@@ -3,10 +3,11 @@ import { ApiService } from '../../../core/services/api.service';
 import { DatePipe } from '@angular/common';
 import { Movie } from '../../../core/models/movie.model';
 import { ToastrService } from 'ngx-toastr';
+import { RouterLink } from "@angular/router";
 
 @Component({
   selector: 'app-home',
-  imports: [DatePipe],
+  imports: [DatePipe, RouterLink],
   templateUrl: './home.html',
   styleUrl: './home.scss',
 })

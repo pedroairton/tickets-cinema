@@ -1,29 +1,71 @@
-<article>
-    @if (movie()) {
-        <div class="infos-filme">
-            @if (movie()?.image_url) {
-                <img [src]="movie()?.image_url" [alt]="movie()?.title">
-            } @else {
-                 <img src="placeholder.png" [alt]="movie()?.title">
-            }
-            <div class="detalhes-filme">
-                <h1>{{ movie()?.age_rating }} {{ movie()?.title }} <span>{{ movie()?.formatted_duration }}</span></h1>
-                @if (movie()?.genres) {
-                    <small>{{ movie()?.genres?.map((genre) => genre.name)?.join(', ') }}</small>
-                }
-                <p>{{ movie()?.synopsis }}</p>
-                <div class="ficha-tecnica">
-                    <h2>Ficha técnica</h2>
-                    <p>Título original: {{ movie()?.original_title }}</p>
-                    <p>Diretor: {{ movie()?.director }}</p>
-                    <p>Distribuidor(a): {{ movie()?.distributor }}</p>
-                    <p>País de origem: {{ movie()?.country_of_origin }}</p>
-                    <p>Data de lançamento: {{ movie()?.release_date }}</p>
-                    <p>Classificação Indicativa: {{ movie()?.age_rating }}</p>
-                </div>
-            </div>
+<article class="page-movie-detail">
+  @if (movie()) {
+    <div class="infos-filme">
+      @if (movie()?.image_url) {
+        <img class="img-filme" [src]="movie()?.image_url" [alt]="movie()?.title" />
+      } @else {
+        <img class="img-filme" src="placeholder.png" [alt]="movie()?.title" />
+      }
+      <div class="detalhes-filme">
+        <div class="titulo">
+            <h1>
+              {{ movie()?.title }}
+            </h1>
+            <span>{{ movie()?.formatted_duration }}</span>
         </div>
-    } @else {
-        <h2>Filme não encontrado</h2>
-    }
+        <div class="classificacao">
+          <span>{{ movie()?.age_rating }}</span>
+          @if (movie()?.genres) {
+            <small>{{
+              movie()
+                ?.genres?.map((genre) => genre.name)
+                ?.join(', ')
+            }}</small>
+          }
+        </div>
+        <p>{{ movie()?.synopsis }}</p>
+        <mat-accordion>
+          <mat-expansion-panel hideToggle (opened)="panelOpenState.set(true)" (closed)="panelOpenState.set(false)">
+            <mat-expansion-panel-header>
+              <mat-panel-title> <h2>Ficha técnica</h2> </mat-panel-title>
+              <mat-panel-description> </mat-panel-description>
+              <div class="icon" [class.open]="panelOpenState()"]>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 -960 960 960"
+                  aria-hidden="true"
+                  focusable="false"
+                >
+                  <path d="M480-345 240-585l56-56 184 184 184-184 56 56-240 240Z"></path>
+                </svg>
+              </div>
+            </mat-expansion-panel-header>
+            <div class="ficha-tecnica">
+              <p>Título original: {{ movie()?.original_title }}</p>
+              <p>Diretor: {{ movie()?.director }}</p>
+              <p>Distribuidor(a): {{ movie()?.distributor }}</p>
+              <p>País de origem: {{ movie()?.country_of_origin }}</p>
+              <p>Data de lançamento: {{ movie()?.release_date }}</p>
+              <p>Classificação Indicativa: {{ movie()?.age_rating }}</p>
+            </div>
+          </mat-expansion-panel>
+        </mat-accordion>
+      </div>
+    </div>
+    <div class="sessoes-filme">
+      <h1>Próximas sessões</h1>
+      @for (dates of screeningsDates(); track dates.date) {
+        <div class="sessao">
+          <h2>Sessões em {{ dates.date | date: 'dd/MM/yyyy' }}</h2>
+          <div class="horarios">
+            @for (screening of dates.screenings; track screening.id) {
+              <button>{{ screening.start_time}}</button>
+            }
+          </div>
+        </div>
+      }
+    </div>
+  } @else {
+    <h2>Filme não encontrado</h2>
+  }
 </article>
