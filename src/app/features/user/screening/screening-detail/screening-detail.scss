@@ -49,7 +49,8 @@
   gap: 1.5rem;
   margin-bottom: 2rem;
   padding: 1.5rem;
-  background: #1f2937;
+  background: #202020;
+  border: 1px solid #404040;
   border-radius: 12px;
 
   .movie-poster {
@@ -221,11 +222,11 @@
 }
 
 .btn-primary {
-  background: #6366f1;
+  background: #c00707;
   color: #fff;
 
   &:hover:not(:disabled) {
-    background: #4f46e5;
+    background: #dd0a0a;
   }
 }
 
@@ -245,7 +246,8 @@
 
   .confirmation-card {
     text-align: center;
-    background: #1f2937;
+    background: #202020;
+    border: 1px solid #404040;
     border-radius: 16px;
     padding: 3rem 2rem;
     max-width: 600px;
@@ -275,7 +277,7 @@
     margin-bottom: 2rem;
 
     .ticket-item {
-      background: #111827;
+      background: #dd0a0a;
       border: 1px dashed #4b5563;
       border-radius: 8px;
       padding: 1rem 1.5rem;
@@ -283,13 +285,13 @@
       .ticket-code {
         font-family: monospace;
         font-size: 1rem;
-        color: #6366f1;
+        color: white;
         font-weight: 700;
       }
 
       .ticket-seat {
         font-size: 0.8rem;
-        color: #9ca3af;
+        color: white;
         margin-top: 0.25rem;
       }
     }

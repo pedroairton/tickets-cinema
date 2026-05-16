@@ -1,5 +1,6 @@
 .payment-container {
-  background: #111827;
+  background: #202020;
+  border: 1px solid #404040;
   border-radius: 12px;
   padding: 2rem;
 
@@ -23,7 +24,7 @@
   align-items: center;
   gap: 1rem;
   padding: 1rem 1.25rem;
-  background: #1f2937;
+  background: #202020;
   border: 2px solid #374151;
   border-radius: 10px;
   cursor: pointer;
@@ -32,13 +33,13 @@
   text-align: left;
 
   &:hover:not(:disabled) {
-    border-color: #6366f1;
-    background: #1e2a3a;
+    border-color: #c00707;
+    background: #d42124;
   }
 
   &.selected {
-    border-color: #6366f1;
-    background: rgba(99, 102, 241, 0.1);
+    border-color: #c00707;
+    background: #d42124;
   }
 
   &:disabled {

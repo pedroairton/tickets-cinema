@@ -61,7 +61,16 @@ button {
   border: none;
   cursor: pointer;
 }
-article {
-  width: 90%;
-  margin: 150px auto;
+main:not(.admin) {
+  article {
+    width: 90%;
+    margin: 150px auto;
+  }
+}
+main.admin{
+  article{
+    width: calc(100% - 180px);
+    margin: 80px 0 50px 180px;
+    padding: 0 2rem;
+  }
 }

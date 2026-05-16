@@ -1,5 +1,5 @@
 .seat-map-container {
-  background: #111827;
+  background: #151515;
   border-radius: 12px;
   padding: 2rem;
 
@@ -16,13 +16,13 @@
   width: 70%;
   margin: 0 auto 2rem;
   padding: 0.5rem;
-  background: linear-gradient(180deg, #6366f1 0%, transparent 100%);
+  background: linear-gradient(180deg, #DD0A0A 0%, transparent 100%);
   border-radius: 4px 4px 50% 50%;
   text-align: center;
 
   span {
     font-size: 0.7rem;
-    color: #a5b4fc;
+    color: white;
     letter-spacing: 4px;
     text-transform: uppercase;
   }
@@ -81,7 +81,7 @@
   }
 
   &.selected {
-    background: #6366f1;
+    background: #DD0A0A;
     color: #fff;
     box-shadow: 0 0 8px rgba(99, 102, 241, 0.5);
     transform: scale(1.1);
@@ -115,7 +115,7 @@
     border-radius: 4px;
 
     &.available { background: #374151; }
-    &.selected  { background: #6366f1; }
+    &.selected  { background: #DD0A0A; }
     &.occupied  { background: #1f2937; opacity: 0.5; }
   }
 }

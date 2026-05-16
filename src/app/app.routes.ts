@@ -34,10 +34,6 @@ export const routes: Routes = [
                 path: 'sessoes/:id',
                 loadComponent: () => import ('./features/user/screening/screening-detail/screening-detail').then(m => m.ScreeningDetail)
             },
-            {
-                path: '**',
-                redirectTo: 'home'
-            }
         ]
     },
     {
@@ -48,10 +44,19 @@ export const routes: Routes = [
                 loadComponent: () => import('./features/admin/login/login').then(m => m.Login)
             },
             {
+                path: 'dashboard',
+                canActivate: [adminGuard],
+                loadComponent: () => import('./features/admin/dashboard/dashboard.component').then(m => m.DashboardComponent)
+            },
+            {
                 path: 'catalogo',
                 canActivate: [adminGuard],
                 loadComponent: () => import('./features/admin/movies/movies').then(m => m.Movies)
             }
         ]
+    },
+    {
+        path: '**',
+        redirectTo: 'home'
     }
 ];
