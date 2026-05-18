@@ -13,10 +13,12 @@ import { HeaderAdmin } from "./shared/header-admin/header-admin";
 export class App {
   protected readonly title = signal('tickets');
   isAdminRoute: boolean = false
+  loginRoute: boolean = false
 
   constructor(private router: Router){
     this.router.events.subscribe(() => {
       this.isAdminRoute = this.router.url.includes('admin')
+      this.loginRoute = this.router.url.includes('login')
     })
   }
 }

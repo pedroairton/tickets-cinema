@@ -1,9 +1,11 @@
-@if (!isAdminRoute) {
+@if (!isAdminRoute && !loginRoute) {
     <app-header></app-header>
-} @else {
+} @else if(isAdminRoute && !loginRoute) {
     <app-header-admin></app-header-admin>
 }
 <main [class.admin]="isAdminRoute">
     <router-outlet></router-outlet>
 </main>
-<app-footer></app-footer>
+@if (!loginRoute) {
+    <app-footer></app-footer>
+}
