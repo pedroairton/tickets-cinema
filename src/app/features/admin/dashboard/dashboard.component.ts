@@ -2,16 +2,21 @@ import { Component, inject, signal } from '@angular/core';
 import { AdminService } from '../../../core/services/admin.service';
 import { ToastrService } from 'ngx-toastr';
 import { Dashboard, DashboardPopularTime, DashboardSummary, DashboardTopGenre, DashboardTopMovie } from '../../../core/models/dashboard.model';
+import { MatIconModule } from '@angular/material/icon';
+import { CurrencyPipe } from '@angular/common';
 
 @Component({
   selector: 'app-dashboard',
-  imports: [],
+  imports: [MatIconModule, CurrencyPipe],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss',
 })
 export class DashboardComponent {
   dashboard = signal<Dashboard>({
-    summary: null
+    summary: null,
+    topMovies: null,
+    popularTimes: null,
+    topGenres: null
   })
 
   private adminService = inject(AdminService)
@@ -45,6 +50,12 @@ export class DashboardComponent {
     this.adminService.getDashboardTopMovies().subscribe({
       next: (res: {data: DashboardTopMovie[]}) => {
         console.log(res);
+        this.dashboard.update(state => {
+          return {
+            ...state,
+            topMovies: res.data
+          }
+        })
       },
       error: (err) => {
         console.log(err);
@@ -56,6 +67,12 @@ export class DashboardComponent {
     this.adminService.getDashboardPopularTimes().subscribe({
       next: (res: {data: DashboardPopularTime[]}) => {
         console.log(res);
+        this.dashboard.update(state => {
+          return {
+            ...state,
+            popularTimes: res.data
+          }
+        })
       },
       error: (err) => {
         console.log(err);
@@ -67,6 +84,12 @@ export class DashboardComponent {
     this.adminService.getDashboardTopGenres().subscribe({
       next: (res: {data: DashboardTopGenre[]}) => {
         console.log(res);
+        this.dashboard.update(state => {
+          return {
+            ...state,
+            topGenres: res.data
+          }
+        })
       },
       error: (err) => {
         console.log(err);

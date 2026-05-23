@@ -1,11 +1,11 @@
 import { WritableSignal } from '@angular/core';
 
 export interface Dashboard {
-    summary: DashboardSummary | null
-  // topMovies: any,
+  summary: DashboardSummary | null;
+  topMovies: DashboardTopMovie[] | null;
   // revenue: any
-  // popularTimes: any,
-  // topGenres: any,
+  popularTimes: DashboardPopularTime[] | null;
+  topGenres: DashboardTopGenre[] | null;
 }
 
 export interface DashboardSummary {
@@ -23,11 +23,11 @@ export interface DashboardTopMovie {
   total_revenue: string;
 }
 
-export interface DashboardPopularTime{
+export interface DashboardPopularTime {
   hour: number;
   tickets_sold: number;
 }
-export interface DashboardTopGenre{
+export interface DashboardTopGenre {
   id: number;
   name: string;
   slug: string;

@@ -1,1 +1,11 @@
-<p>rooms works!</p>
+<article class="page-rooms">
+    <h1>Salas</h1>
+    <div class="conteudo-salas">
+        @for (room of rooms(); track room.id) {
+            <div class="sala">
+                <h2>{{ room.name }}</h2>
+                <span>Sessões programadas: {{ room.active_screenings_count }}</span>
+            </div>
+        }
+    </div>
+</article>

@@ -1,3 +1,81 @@
 <article class="page-dashboard">
-    <h1>Dashboard</h1>
+  <h1>Dashboard</h1>
+  <select name="period" id="period">
+    <option value="total">Total</option>
+    <option value="week">Semana</option>
+    <option value="month">Mês</option>
+  </select>
+  <div class="cards-dashboard">
+    <!-- summary -->
+    <div class="card">
+      <div class="topo-card">
+        <span>Arrecadamento</span>
+        <mat-icon>attach_money</mat-icon>
+      </div>
+      <h2 class="valor">
+        {{ dashboard().summary?.total_revenue | currency: 'BRL' : 'symbol' : '1.2-2' }}
+      </h2>
+    </div>
+    <div class="card">
+      <div class="topo-card">
+        <span>Usuários Cadastrados</span>
+        <mat-icon>person</mat-icon>
+      </div>
+      <h2 class="valor">{{ dashboard().summary?.total_customers }}</h2>
+    </div>
+    <div class="card">
+      <div class="topo-card">
+        <span>Pedidos</span>
+        <mat-icon>shopping_cart</mat-icon>
+      </div>
+      <h2 class="valor">{{ dashboard().summary?.total_orders }}</h2>
+    </div>
+    <div class="card">
+      <div class="topo-card">
+        <span>Ingressos vendidos</span>
+        <mat-icon>ticket</mat-icon>
+      </div>
+      <h2 class="valor">{{ dashboard().summary?.total_tickets }}</h2>
+    </div>
+  </div>
+  <div class="listas">
+    <div class="lista">
+      <span class="titulo">Filmes mais vendidos <mat-icon>movie</mat-icon></span>
+      <div class="itens">
+        @for (movie of dashboard().topMovies; track movie.id) {
+          <div class="item">
+            <h4 class="nome">{{ movie.title }}</h4>
+            <div class="valor">
+              <span class="revenue">{{
+                movie.total_revenue | currency: 'BRL' : 'symbol' : '1.2-2'
+              }}</span>
+              <span class="vendas">{{ movie.tickets_sold }} ingressos</span>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+    <div class="lista">
+      <span class="titulo">Horários mais frequentados <mat-icon>schedule</mat-icon></span>
+      <div class="itens">
+        @for (hour of dashboard().popularTimes; track hour.hour) {
+          <div class="item">
+            <h4 class="nome">{{ hour.hour }}h</h4>
+            <span class="vendas">{{ hour.tickets_sold }} ingressos</span>
+          </div>
+        }
+      </div>
+    </div>
+    <div class="lista">
+        <span class="titulo">Gêneros mais populares <mat-icon>movie</mat-icon></span>
+        <div class="itens">
+          @for (genre of dashboard().topGenres; track genre.id) {
+            <div class="item">
+              <h4 class="nome">{{ genre.name }}</h4>
+              <span class="vendas">{{ genre.tickets_sold }} ingressos</span>
+            </div>
+          }
+        </div>
+    </div>
+  </div>
 </article>

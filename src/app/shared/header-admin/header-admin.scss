@@ -1,6 +1,7 @@
 header{
     position: fixed;
     width: 180px;
+    height: 100dvh;
     top: 0;
     left: 0;
     z-index: 999;
@@ -8,8 +9,8 @@ header{
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-around;
-    height: 100dvh;
+    gap: 100px;
+    padding: 50px 0;
     nav{
         width: 100%;
         display: flex;
@@ -26,6 +27,7 @@ header{
         }
     }
     .logout{
+        margin-top: auto;
         button{
             background-color: white;
             font-weight: 700;

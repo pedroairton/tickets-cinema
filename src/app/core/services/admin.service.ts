@@ -43,4 +43,8 @@ export class AdminService {
   getDashboardTopGenres(): Observable<DashboardTopGenresResponse> {
     return this.http.get<DashboardTopGenresResponse>(`${this.apiUrl}/admin/dashboard/top-genres`)
   }
+
+  getRooms(): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/admin/rooms`);
+  }
 }

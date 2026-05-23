@@ -1,0 +1,22 @@
+.page-rooms {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  .conteudo-salas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 50px;
+    .sala {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      padding: 1rem;
+      border: solid 1px #404040;
+      border-radius: 8px;
+      transition: 0.3s;
+      &:hover{
+        border: solid 1px white;
+      }
+    }
+  }
+}

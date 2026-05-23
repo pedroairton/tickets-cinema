@@ -6,6 +6,6 @@
 <main [class.admin]="isAdminRoute">
     <router-outlet></router-outlet>
 </main>
-@if (!loginRoute) {
+@if (!isAdminRoute && !loginRoute) {
     <app-footer></app-footer>
 }
