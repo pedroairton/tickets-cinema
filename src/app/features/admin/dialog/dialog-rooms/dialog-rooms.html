@@ -1,1 +1,6 @@
-<p>dialog-rooms works!</p>
+<div class="dialog-rooms">
+    <h1>{{ data.room.name }}</h1>
+    <span>Status: {{ data.room.is_active ? 'Ativo' : 'Inativo' }}</span>
+    <!-- <h2>Informações</h2> -->
+    <p>Capacidade: {{ data.room.seats_count }}</p>
+</div>

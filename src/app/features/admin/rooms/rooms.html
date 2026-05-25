@@ -2,11 +2,20 @@
     <h1>Salas</h1>
     <div class="conteudo-salas">
         @for (room of rooms(); track room.id) {
-            <div class="sala">
-                <h2>{{ room.name }}</h2>
-                <span>Sessões programadas: {{ room.active_screenings_count }}</span>
-                <button (click)="openDialog(room)" class="btn-detalhes">Detalhes</button>
+        <div class="sala">
+            <h2 [class.ativo]="room.is_active">
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor"
+                    class="bi bi-circle-fill" viewBox="0 0 16 16">
+                    <circle cx="8" cy="8" r="8" />
+                </svg>
+                {{ room.name }}
+            </h2>
+            <span>Sessões programadas: {{ room.active_screenings_count }}</span>
+            <div class="btns">
+                <button (click)="updateRoomStatus(room.id, !room.is_active)" class="btn btn-toggle">{{ room.is_active ? 'Desativar' : 'Ativar' }}</button>
+                <button (click)="openDialog(room)" class="btn btn-detalhes">Detalhes</button>
             </div>
+        </div>
         }
     </div>
 </article>

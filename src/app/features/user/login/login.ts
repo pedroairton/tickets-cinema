@@ -4,6 +4,9 @@ import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '../../../core/services/auth.service';
+import { CdkAriaLive } from "../../../../../node_modules/@angular/cdk/types/_a11y-module-chunk";
+import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -12,20 +15,29 @@ import { AuthService } from '../../../core/services/auth.service';
   styleUrl: './login.scss',
 })
 export class Login {
-  fb: FormBuilder;
-
+  loginForm: FormGroup
+  private fb = inject(FormBuilder);
   private authService = inject(AuthService);
+  private toastr = inject(ToastrService);
+  private router = inject(Router);
 
   constructor() {
-    this.fb = new FormBuilder();
-    this.fb.group({
+    this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(8)]],
-    });
+    })
   }
-  // submit(){
-  //   this.authService.login(this.fb.value).subscribe({
-
-  //   });
-  // }
+  login(){
+    if(this.loginForm.valid){
+      this.authService.login(this.loginForm.value).subscribe({
+        next: () => {
+          this.toastr.success('Login realizado com sucesso!', 'Sucesso!');
+          this.router.navigate(['/admin/dashboard']);
+        }, error: (err) => {
+          console.log(err);
+          this.toastr.error('Email ou senha inválidos!', 'Erro!');
+        }
+      })
+    }
+  }
 }

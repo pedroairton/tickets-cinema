@@ -34,6 +34,18 @@ export class Rooms {
       },
     });
   }
+  updateRoomStatus(roomId: number, newStatus: boolean) {
+    this.adminService.updateRoomStatus(roomId, newStatus).subscribe({
+      next: (res) => {
+        this.loadRooms();
+        this.toastr.success('Sala atualizada com sucesso!');
+      },
+      error: (err) => {
+        console.log(err);
+        this.toastr.error('Erro ao atualizar a sala');
+      },
+    });
+  }
 
   openDialog(room: Room): void {
     const dialogRef = this.dialog.open(DialogRooms, {

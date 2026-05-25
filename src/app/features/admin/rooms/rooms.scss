@@ -17,17 +17,46 @@
       &:hover{
         border: solid 1px white;
       }
-      .btn-detalhes{
-        width: 100%;
-        background-color: #d42124;
-        color: white;
-        padding: 0.25rem;
-        border-radius: 4px;
-        border: solid 2px #dd0a0a;
-        transition: 0.3s;
-        &:hover {
-          border: solid 2px transparent;
-          background-color: #dd0a0a;
+      h2{
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        svg{
+          fill: #dd0a0a;
+        }
+        &.ativo{
+          svg{
+            fill: lightgreen;
+          }
+        }
+      }
+      .btns{
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        .btn{
+          width: 100%;
+          padding: 0.25rem;
+          border-radius: 4px;
+          transition: 0.3s;
+          &.btn-toggle{
+            background-color: #d42124;
+            color: white;
+            border: solid 2px #dd0a0a;
+            &:hover {
+              border: solid 2px transparent;
+              background-color: #dd0a0a;
+            }
+          }
+          &.btn-detalhes{
+            background-color: #d5d506;
+            color: black;
+            border: solid 2px #d5d506;
+            &:hover {
+              border: solid 2px transparent;
+              background-color: #f8f810;
+            }
+          }
         }
       }
     }
