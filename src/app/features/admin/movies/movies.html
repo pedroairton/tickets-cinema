@@ -1,1 +1,17 @@
-<p>movies works!</p>
+<article class="page-movies">
+    <h1>Filmes</h1>
+    <div class="conteudo-filmes">
+        @if (movies().length > 0) {
+        @for (movie of movies(); track movie.id) {
+        <div class="filme">
+            <img [src]="movie.image_url" [alt]="movie.title">
+            <div class="infos">
+                <h3>{{ movie.title }}</h3>
+            </div>
+        </div>
+        }
+        } @else {
+        <h2>Nenhum filme encontrado</h2>
+        }
+    </div>
+</article>

@@ -51,4 +51,8 @@ export class AdminService {
   updateRoomStatus(roomId: number, status: boolean): Observable<any> {
     return this.http.patch<any>(`${this.apiUrl}/admin/rooms/${roomId}/status`, { is_active: status });
   }
+
+  getMovies(): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/admin/movies`);
+  }
 }
