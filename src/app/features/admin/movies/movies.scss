@@ -2,6 +2,24 @@
   display: flex;
   flex-direction: column;
   gap: 2rem;
+  .topo{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .btn-novo{
+        background-color: green;
+        color: white;
+        padding: 0.5rem 1rem;
+        border-radius: 5px;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: .3s;
+        &:hover{
+            background-color: darkgreen;
+        }
+    }
+  }
   .conteudo-filmes {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));

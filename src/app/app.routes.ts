@@ -54,6 +54,11 @@ export const routes: Routes = [
                 loadComponent: () => import('./features/admin/movies/movies').then(m => m.Movies)
             },
             {
+                path: 'filmes/:id',
+                canActivate: [adminGuard],
+                loadComponent: () => import('./features/admin/movie-detail/movie-detail').then(m => m.MovieDetail)
+            },
+            {
                 path: 'sessoes',
                 canActivate: [adminGuard],
                 loadComponent: () => import('./features/admin/screenings/screenings').then(m => m.Screenings)

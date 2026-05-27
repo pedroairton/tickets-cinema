@@ -55,4 +55,8 @@ export class AdminService {
   getMovies(): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/admin/movies`);
   }
+
+  getMovieById(id: number): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/admin/movies/${id}`);
+  }
 }
