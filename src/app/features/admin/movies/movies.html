@@ -1,13 +1,13 @@
 <article class="page-movies">
     <div class="topo">
         <h1>Filmes</h1>
-        <button class="btn-novo"> <mat-icon>add</mat-icon> Novo Filme</button>
+        <button routerLink="novo" class="btn-novo"> <mat-icon>add</mat-icon> Novo Filme</button>
     </div>
     <h2>Em cartaz ({{ showing().length }})</h2>
     <div class="conteudo-filmes">
         @if (showing().length > 0) {
         @for (movie of showing(); track movie.id) {
-        <a routerLink="{{ movie.id }}" class="filme">
+        <a routerLink="editar/{{ movie.id }}" class="filme">
             <img [src]="movie.image_url" [alt]="movie.title">
             <div class="infos">
                 <h3>{{ movie.title }}</h3>
@@ -22,7 +22,7 @@
     <div class="conteudo-filmes">
         @if (comingSoon().length > 0) {
         @for (movie of comingSoon(); track movie.id) {
-        <a routerLink="{{ movie.id }}" class="filme">
+        <a routerLink="editar/{{ movie.id }}" class="filme">
             <img [src]="movie.image_url" [alt]="movie.title">
             <div class="infos">
                 <h3>{{ movie.title }}</h3>
@@ -37,7 +37,7 @@
     <div class="conteudo-filmes">
         @if (offScreen().length > 0) {
         @for (movie of offScreen(); track movie.id) {
-        <a routerLink="{{ movie.id }}" class="filme">
+        <a routerLink="editar/{{ movie.id }}" class="filme">
             <img [src]="movie.image_url" [alt]="movie.title">
             <div class="infos">
                 <h3>{{ movie.title }}</h3>

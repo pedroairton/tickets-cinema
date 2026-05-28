@@ -1,1 +1,63 @@
-<p>movie-detail works!</p>
+<article class="page-movie">
+    <h1>{{ isEditMode() ? 'Editar filme' : 'Novo filme' }}</h1>
+    <form class="form-filme" [formGroup]="movieForm">
+        <h2>Informações básicas</h2>
+        <div class="infos-basicas">
+            <div class="campos">
+                <mat-form-field>
+                    <mat-label><mat-icon>movie</mat-icon>Titulo</mat-label>
+                    <input type="text" matInput formControlName="title" />
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label><mat-icon>description</mat-icon>Sinopse</mat-label>
+                    <textarea matInput formControlName="synopsis"></textarea>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label><mat-icon>timer</mat-icon>Duração do filme (em minutos)</mat-label>
+                    <input type="number" matInput formControlName="duration" />
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label><mat-icon>category</mat-icon>Classificação Indicativa</mat-label>
+                    <mat-select>
+                        <mat-option value="Livre">Livre</mat-option>
+                        <mat-option value="10">10</mat-option>
+                        <mat-option value="12">12</mat-option>
+                        <mat-option value="14">14</mat-option>
+                        <mat-option value="16">16</mat-option>
+                        <mat-option value="18">18</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <img class="img-filme" [src]="movie()?.image_url" alt="Imagem do filme">
+        </div>
+        <h2>Ficha Técnica</h2>
+        <div class="ficha-tecnica">
+            <mat-form-field>
+                <mat-label><mat-icon>movie</mat-icon>Título original</mat-label>
+                <input type="text" matInput formControlName="original_title" />
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label><mat-icon>person</mat-icon>Diretor(a)</mat-label>
+                <input type="text" matInput formControlName="director" />
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label><mat-icon>movie</mat-icon>Distribuidor(a)</mat-label>
+                <input type="text" matInput formControlName="distributor" />
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label><mat-icon>language</mat-icon>País de origem</mat-label>
+                <input type="text" matInput formControlName="country_of_origin" />
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label><mat-icon>calendar_month</mat-icon>Data de lançamento</mat-label>
+                <input type="date" matInput formControlName="release_date" />
+            </mat-form-field>
+        </div>
+        <h2 class="status">Status</h2>
+        <mat-radio-group>
+            <mat-radio-button value="showing">Em cartaz</mat-radio-button>
+            <mat-radio-button value="coming_soon">Em breve</mat-radio-button>
+            <mat-radio-button value="off_screen">Fora de cartaz</mat-radio-button>
+        </mat-radio-group>
+    </form>
+</article>
