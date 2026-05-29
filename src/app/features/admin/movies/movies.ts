@@ -21,10 +21,9 @@ export class Movies {
   loadMovies() {
     this.adminService.getMovies().subscribe({
       next: (res) => {
-        console.log(res.data);
         this.comingSoon.set(res.data.coming_soon.movies);
         this.showing.set(res.data.showing.movies);
-        this.offScreen.set(res.data.offScreen.movies);
+        this.offScreen.set(res.data.off_screen.movies);
       },
       error: (err) => this.toastr.error('Erro ao carregar os filmes'),
     });

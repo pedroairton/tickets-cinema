@@ -1,72 +1,107 @@
 <article class="page-movie">
-    <h1>{{ isEditMode() ? 'Editar filme' : 'Novo filme' }}</h1>
-    <form class="form-filme" [formGroup]="movieForm">
-        <h2>Informações básicas</h2>
-        <div class="infos-basicas">
-            <div class="campos">
-                <mat-form-field>
-                    <mat-label><mat-icon>movie</mat-icon>Titulo</mat-label>
-                    <input type="text" matInput formControlName="title" />
-                </mat-form-field>
-                <mat-form-field>
-                    <mat-label><mat-icon>description</mat-icon>Sinopse</mat-label>
-                    <textarea rows="5" matInput formControlName="synopsis"></textarea>
-                </mat-form-field>
-                <mat-form-field>
-                    <mat-label><mat-icon>timer</mat-icon>Duração do filme (em minutos)</mat-label>
-                    <input type="number" matInput formControlName="duration" />
-                </mat-form-field>
-                <mat-form-field>
-                    <mat-label><mat-icon>category</mat-icon>Classificação Indicativa</mat-label>
-                    <mat-select formControlName="age_rating">
-                        <mat-option value="Livre">Livre</mat-option>
-                        <mat-option value="10">10</mat-option>
-                        <mat-option value="12">12</mat-option>
-                        <mat-option value="14">14</mat-option>
-                        <mat-option value="16">16</mat-option>
-                        <mat-option value="18">18</mat-option>
-                    </mat-select>
-                </mat-form-field>
-            </div>
-            <div class="img-filme">
-                <img [src]="movie()?.image_url" alt="Imagem do filme">
-                <input type="file" id="img-file" (change)="onFileSelected($event)" accept="image/*" hidden />
-                <label for="img-file"><mat-icon>add_a_photo</mat-icon>Selecionar imagem</label>
-                @if (movie()?.image_url) {
-                    <button type="button" (click)="removeImage()">Remover imagem</button>
-                }
-            </div>
-        </div>
-        <h2>Ficha Técnica</h2>
-        <div class="ficha-tecnica">
-            <mat-form-field>
-                <mat-label><mat-icon>movie</mat-icon>Título original</mat-label>
-                <input type="text" matInput formControlName="original_title" />
-            </mat-form-field>
-            <mat-form-field>
-                <mat-label><mat-icon>person</mat-icon>Diretor(a)</mat-label>
-                <input type="text" matInput formControlName="director" />
-            </mat-form-field>
-            <mat-form-field>
-                <mat-label><mat-icon>movie</mat-icon>Distribuidor(a)</mat-label>
-                <input type="text" matInput formControlName="distributor" />
-            </mat-form-field>
-            <mat-form-field>
-                <mat-label><mat-icon>language</mat-icon>País de origem</mat-label>
-                <input type="text" matInput formControlName="country_of_origin" />
-            </mat-form-field>
-            <mat-form-field>
-                <mat-label><mat-icon>calendar_month</mat-icon>Data de lançamento</mat-label>
-                <input type="date" matInput formControlName="release_date" />
-            </mat-form-field>
-        </div>
-        <h2 class="status">Status</h2>
-        <div class="status">
-            <mat-radio-group formControlName="status">
-                <mat-radio-button value="showing"><span>Em cartaz</span></mat-radio-button>
-                <mat-radio-button value="coming_soon"><span>Em breve</span></mat-radio-button>
-                <mat-radio-button value="off_screen"><span>Fora de cartaz</span></mat-radio-button>
-            </mat-radio-group>
-        </div>
-    </form>
+  <h1>{{ isEditMode() ? 'Editar filme' : 'Novo filme' }}</h1>
+  <form class="form-filme" [formGroup]="movieForm" (ngSubmit)="onSubmit()">
+    <h2>Informações básicas</h2>
+    <div class="infos-basicas">
+      <div class="campos">
+        <mat-form-field>
+          <mat-label><mat-icon>movie</mat-icon>Titulo</mat-label>
+          <input type="text" matInput formControlName="title" />
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label><mat-icon>description</mat-icon>Sinopse</mat-label>
+          <textarea rows="5" matInput formControlName="synopsis"></textarea>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label><mat-icon>timer</mat-icon>Duração do filme (em minutos)</mat-label>
+          <input type="number" matInput formControlName="duration_minutes" />
+        </mat-form-field>
+        <!-- genres -->
+        <mat-form-field>
+          <mat-label><mat-icon>category</mat-icon>Gêneros</mat-label>
+          <mat-select formControlName="genres_ids" multiple>
+            @for (genre of genres(); track genre.id) {
+              <mat-option value="{{ genre.id }}">{{ genre.name }}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label><mat-icon>category</mat-icon>Classificação Indicativa</mat-label>
+          <mat-select formControlName="age_rating">
+            <mat-option value="L">Livre</mat-option>
+            <mat-option value="10">10</mat-option>
+            <mat-option value="12">12</mat-option>
+            <mat-option value="14">14</mat-option>
+            <mat-option value="16">16</mat-option>
+            <mat-option value="18">18</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="img-filme">
+        <img [src]="mainImagePreview" alt="Imagem do filme" />
+        <input
+          #mainImageInput
+          type="file"
+          id="img-file"
+          (change)="onImageSelected($event)"
+          accept="image/*"
+          hidden
+        />
+        <label class="img-label" for="img-file"
+          ><mat-icon>add_a_photo</mat-icon>Selecionar imagem</label
+        >
+        @if (movie()?.image_url) {
+          <button class="btn-remover" type="button" (click)="removeImage()">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="32"
+              height="32"
+              fill="currentColor"
+              class="bi bi-x"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708"
+              />
+            </svg>
+          </button>
+        }
+      </div>
+    </div>
+    <h2>Ficha Técnica</h2>
+    <div class="ficha-tecnica">
+      <mat-form-field>
+        <mat-label><mat-icon>movie</mat-icon>Título original</mat-label>
+        <input type="text" matInput formControlName="original_title" />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label><mat-icon>person</mat-icon>Diretor(a)</mat-label>
+        <input type="text" matInput formControlName="director" />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label><mat-icon>movie</mat-icon>Distribuidor(a)</mat-label>
+        <input type="text" matInput formControlName="distributor" />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label><mat-icon>language</mat-icon>País de origem</mat-label>
+        <input type="text" matInput formControlName="country_of_origin" />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label><mat-icon>calendar_month</mat-icon>Data de lançamento</mat-label>
+        <input type="date" matInput formControlName="release_date" />
+      </mat-form-field>
+    </div>
+    <h2 class="status">Status</h2>
+    <div class="status">
+      <mat-radio-group formControlName="status">
+        <mat-radio-button value="showing"><span>Em cartaz</span></mat-radio-button>
+        <mat-radio-button value="coming_soon"><span>Em breve</span></mat-radio-button>
+        <mat-radio-button value="off_screen"><span>Fora de cartaz</span></mat-radio-button>
+      </mat-radio-group>
+    </div>
+    <div class="btns">
+      <button type="submit" class="btn-salvar">Salvar</button>
+      <button type="button" class="btn-cancelar">Cancelar</button>
+    </div>
+  </form>
 </article>

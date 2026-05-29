@@ -19,10 +19,52 @@
       }
       .img-filme {
         border: solid 1px #404040;
+        position: relative;
         img {
           aspect-ratio: 3/4;
-          object-fit: contain;
+          max-height: 520px;
+          object-fit: cover;
           border-radius: 4px;
+        }
+        .img-label {
+          width: max-content;
+          cursor: pointer;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          translate: -50% -50%;
+          color: white;
+          padding: 4px 8px;
+          border-radius: 4px;
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+          scale: 0;
+          transition: .3s
+        }
+        &:hover{
+          .img-label{
+            scale: 1;
+            background-color: rgba(0, 0, 0, 0.25);
+          }
+          .btn-remover{
+            scale: 1;
+          }
+        }
+        .btn-remover{
+          width: 2rem;
+          height: 2rem;
+          border-radius: 50%;
+          position: absolute;
+          top: 5%;
+          right: 5%;
+          background-color: #dd0a0a;
+          color: white;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          transition: .3s;
+          scale: 0;
         }
       }
     }
