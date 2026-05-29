@@ -10,7 +10,7 @@
                 </mat-form-field>
                 <mat-form-field>
                     <mat-label><mat-icon>description</mat-icon>Sinopse</mat-label>
-                    <textarea matInput formControlName="synopsis"></textarea>
+                    <textarea rows="5" matInput formControlName="synopsis"></textarea>
                 </mat-form-field>
                 <mat-form-field>
                     <mat-label><mat-icon>timer</mat-icon>Duração do filme (em minutos)</mat-label>
@@ -18,7 +18,7 @@
                 </mat-form-field>
                 <mat-form-field>
                     <mat-label><mat-icon>category</mat-icon>Classificação Indicativa</mat-label>
-                    <mat-select>
+                    <mat-select formControlName="age_rating">
                         <mat-option value="Livre">Livre</mat-option>
                         <mat-option value="10">10</mat-option>
                         <mat-option value="12">12</mat-option>
@@ -28,7 +28,14 @@
                     </mat-select>
                 </mat-form-field>
             </div>
-            <img class="img-filme" [src]="movie()?.image_url" alt="Imagem do filme">
+            <div class="img-filme">
+                <img [src]="movie()?.image_url" alt="Imagem do filme">
+                <input type="file" id="img-file" (change)="onFileSelected($event)" accept="image/*" hidden />
+                <label for="img-file"><mat-icon>add_a_photo</mat-icon>Selecionar imagem</label>
+                @if (movie()?.image_url) {
+                    <button type="button" (click)="removeImage()">Remover imagem</button>
+                }
+            </div>
         </div>
         <h2>Ficha Técnica</h2>
         <div class="ficha-tecnica">
@@ -54,10 +61,12 @@
             </mat-form-field>
         </div>
         <h2 class="status">Status</h2>
-        <mat-radio-group>
-            <mat-radio-button value="showing">Em cartaz</mat-radio-button>
-            <mat-radio-button value="coming_soon">Em breve</mat-radio-button>
-            <mat-radio-button value="off_screen">Fora de cartaz</mat-radio-button>
-        </mat-radio-group>
+        <div class="status">
+            <mat-radio-group formControlName="status">
+                <mat-radio-button value="showing"><span>Em cartaz</span></mat-radio-button>
+                <mat-radio-button value="coming_soon"><span>Em breve</span></mat-radio-button>
+                <mat-radio-button value="off_screen"><span>Fora de cartaz</span></mat-radio-button>
+            </mat-radio-group>
+        </div>
     </form>
 </article>
