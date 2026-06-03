@@ -72,12 +72,20 @@ export class AdminService {
     return this.http.get<any>(`${this.apiUrl}/admin/genres`);
   }
   createMovie(movie: FormData): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}/admin/movies`, { movie });
+    // show formdata
+    movie.forEach((value, key) => {
+      console.log(key, value);
+    });
+    return this.http.post<any>(`${this.apiUrl}/admin/movies`, movie, 
+      { 
+        reportProgress: true,
+        observe: 'events',
+     });
   }
 
   updateMovie(id: number, movie: FormData): Observable<any> {
-    movie.append('_method', 'PUT');
+    // movie.append('_method', 'PUT');
 
-    return this.http.post<any>(`${this.apiUrl}/admin/movies/${id}`, movie);
+    return this.http.post<any>(`${this.apiUrl}/admin/movies/update/${id}`, movie);
   }
 }

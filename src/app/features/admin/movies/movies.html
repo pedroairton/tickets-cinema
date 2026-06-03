@@ -8,7 +8,7 @@
         @if (showing().length > 0) {
         @for (movie of showing(); track movie.id) {
         <a routerLink="editar/{{ movie.id }}" class="filme">
-            <img [src]="movie.image_url" [alt]="movie.title">
+            <img [src]="storageUrl+'/'+movie.image_url" [alt]="movie.title">
             <div class="infos">
                 <h3>{{ movie.title }}</h3>
             </div>
@@ -23,7 +23,7 @@
         @if (comingSoon().length > 0) {
         @for (movie of comingSoon(); track movie.id) {
         <a routerLink="editar/{{ movie.id }}" class="filme">
-            <img [src]="movie.image_url" [alt]="movie.title">
+            <img [src]="storageUrl+'/'+movie.image_url" [alt]="movie.title">
             <div class="infos">
                 <h3>{{ movie.title }}</h3>
             </div>
@@ -38,7 +38,7 @@
         @if (offScreen().length > 0) {
         @for (movie of offScreen(); track movie.id) {
         <a routerLink="editar/{{ movie.id }}" class="filme">
-            <img [src]="movie.image_url" [alt]="movie.title">
+            <img [src]="storageUrl+'/'+movie.image_url" [alt]="movie.title">
             <div class="infos">
                 <h3>{{ movie.title }}</h3>
             </div>

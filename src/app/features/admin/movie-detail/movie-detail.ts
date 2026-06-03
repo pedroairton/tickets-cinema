@@ -10,6 +10,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-movie-detail',
@@ -26,6 +27,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './movie-detail.scss',
 })
 export class MovieDetail {
+  storageUrl = environment.storageUrl;
   isEditMode = signal(false);
   movieId?: number;
   movie = signal<Movie | null>(null);
@@ -89,7 +91,7 @@ export class MovieDetail {
           release_date: movie.release_date.split('T')[0],
           status: movie.status,
         });
-        this.mainImagePreview = movie.image_url;
+        this.mainImagePreview = this.storageUrl +'/'+ movie.image_url;
       },
       error: (err) => {
         console.log(err);
