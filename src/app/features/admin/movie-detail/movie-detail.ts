@@ -1,5 +1,5 @@
 import { Component, inject, signal } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AdminService } from '../../../core/services/admin.service';
 import { ToastrService } from 'ngx-toastr';
 import { Genre, Movie } from '../../../core/models/movie.model';
@@ -40,7 +40,7 @@ export class MovieDetail {
   mainImageFile: File | null = null;
   mainImagePreview: string | null = null;
 
-  constructor(private route: ActivatedRoute) {
+  constructor(private route: ActivatedRoute, private router: Router) {
     this.movieId = this.route.snapshot.params['id'];
     this.isEditMode.set(!!this.movieId);
     console.log(this.movieId);
@@ -123,6 +123,7 @@ export class MovieDetail {
       this.adminService.updateMovie(this.movieId, formData).subscribe({
         next: () => {
           this.toastr.success('Filme atualizado com sucesso');
+          this.router.navigate(['/admin/filmes']);
         },
         error: (err) => {
           console.log(err);
@@ -133,6 +134,7 @@ export class MovieDetail {
       this.adminService.createMovie(formData).subscribe({
         next: () => {
           this.toastr.success('Filme criado com sucesso');
+          this.router.navigate(['/admin/filmes']);
         },
         error: (err) => {
           console.log(err);
