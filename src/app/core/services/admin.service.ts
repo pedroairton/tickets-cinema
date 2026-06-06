@@ -88,4 +88,8 @@ export class AdminService {
 
     return this.http.post<any>(`${this.apiUrl}/admin/movies/update/${id}`, movie);
   }
+
+  getScreenings(): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/admin/screenings`);
+  }
 }
