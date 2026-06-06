@@ -8,7 +8,7 @@ import {
   DashboardTopGenre,
   DashboardTopMovie,
 } from '../models/dashboard.model';
-import { Movie } from '../models/movie.model';
+import { Movie, Screening } from '../models/movie.model';
 
 interface DashboardSummaryResponse {
   data: DashboardSummary;
@@ -61,8 +61,8 @@ export class AdminService {
     });
   }
 
-  getMovies(): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}/admin/movies`);
+  getMovies(params?: {status: string}): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/admin/movies`, { params });
   }
 
   getMovieById(id: number): Observable<any> {
@@ -82,14 +82,18 @@ export class AdminService {
         observe: 'events',
      });
   }
-
   updateMovie(id: number, movie: FormData): Observable<any> {
     // movie.append('_method', 'PUT');
 
     return this.http.post<any>(`${this.apiUrl}/admin/movies/update/${id}`, movie);
   }
-
   getScreenings(): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/admin/screenings`);
+  }
+  createScreening(screening: FormData): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}/admin/screenings`, screening);
+  }
+  updateScreening(id: number, screening: Screening): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}/admin/screenings/${id}`, screening);
   }
 }

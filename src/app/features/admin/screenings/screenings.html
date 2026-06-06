@@ -1,23 +1,28 @@
 <article class="page-screenings">
     <div class="topo">
         <h1>Sessões</h1>
-        <button routerLink="novo" class="btn-novo"> <mat-icon>add</mat-icon> Nova Sessão</button>
+        <button routerLink="novo" class="btn-novo" (click)="openDialog()"> <mat-icon>add</mat-icon> Nova Sessão</button>
     </div>
     <div class="conteudo">
         @if (screenings()) {
             @for (data of screenings().data; track $index) {
                 <div class="data">
                     <h3>{{ data.formatted_date }} - {{ data.day_of_week }} ({{ data.total_sessions }})</h3>
-                    <div class="sessoes">
+                    <div class="salas">
                         @for (room of data.rooms; track room.id) {
                             <div class="sala">
                                 <h3>{{ room.room_name }}</h3>
-                                @for (screening of room.screenings; track $index) {
-                                    <div class="sessao">
-                                        <h4>{{ screening.formatted_time }} - {{ screening.formatted_end_time }}</h4>
-                                        <p>{{ screening.movie.title }}</p>
-                                    </div>
-                                }
+                                <div class="sessoes">
+                                    @for (screening of room.screenings; track $index) {
+                                        <div class="sessao">
+                                            <h4>{{ screening.formatted_time }} - {{ screening.formatted_end_time }}</h4>
+                                            <p>{{ screening.movie.title }}</p>
+                                            <div class="info" (click)="openDialog(screening, room)">
+                                                <mat-icon>info</mat-icon>
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
                             </div>
                         }
                     </div>

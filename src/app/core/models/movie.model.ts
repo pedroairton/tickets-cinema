@@ -22,7 +22,7 @@ export interface Screening {
     id: number;
     movie_id: number;
     room_id: number;
-    room: string;
+    room?: string;
     start_time: string;
     end_time: string;
     price: number;

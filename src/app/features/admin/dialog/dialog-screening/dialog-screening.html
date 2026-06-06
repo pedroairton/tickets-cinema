@@ -1,0 +1,34 @@
+<div class="dialog-screening">
+  <h1>{{ isEditMode() ? 'Detalhes da sessão' : 'Nova sessão' }}</h1>
+  <form [formGroup]="screeningForm" (ngSubmit)="onSubmit()">
+    <mat-form-field>
+      <mat-label><mat-icon>movie</mat-icon>Filme</mat-label>
+      <mat-select formControlName="movie_id">
+        @for (movie of movies(); track movie.slug) {
+          <mat-option [value]="movie.id">{{ movie.title }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label><mat-icon>theaters</mat-icon>Sala</mat-label>
+      <mat-select formControlName="room_id">
+        @for (room of rooms(); track room.id) {
+          <mat-option [value]="room.id">{{ room.name }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label><mat-icon>schedule</mat-icon>Horário de início</mat-label>
+      <input type="datetime-local" matInput formControlName="start_time" />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label><mat-icon>schedule</mat-icon>Horário de fim</mat-label>
+      <input type="datetime-local" matInput formControlName="end_time" />
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label><mat-icon>monetization_on</mat-icon>Preço (R$)</mat-label>
+        <input type="number" matInput formControlName="price" />
+    </mat-form-field>
+    <button type="submit" class="btn-submit" [disabled]="!screeningForm.valid">Salvar</button>
+  </form>
+</div>
