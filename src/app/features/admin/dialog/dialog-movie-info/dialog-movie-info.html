@@ -1,0 +1,20 @@
+<div class="dialog-movie-info">
+    <h1>Detalhes do filme</h1>
+    <div class="infos">
+        <p>Título: <strong>{{ data.movie.title }}</strong></p>
+        <p>Sinopse: <strong>{{ data.movie.synopsis }}</strong></p>
+        <p>Duração: <strong>{{ data.movie.duration_minutes }} min / {{ minsToHours(data.movie.duration_minutes) }}</strong></p>
+        <p>Gêneros: <strong>{{ data.movie.genres?.map((genre) => genre.name)?.join(', ') }}</strong></p>
+        <p>Classificação: <strong>{{ data.movie.age_rating }}</strong></p>
+        <p>Status: <strong>{{ checkMovieStatus(data.movie.status) }}</strong></p>
+
+    </div>
+    <h3>Ficha técnica</h3>
+    <div class="ficha">
+        <p>Titulo original: <strong>{{ data.movie.original_title }}</strong></p>
+        <p>Diretor: <strong>{{ data.movie.director }}</strong></p>
+        <p>Distribuidor(a): <strong>{{ data.movie.distributor }}</strong></p>
+        <p>Pais de origem: <strong>{{ data.movie.country_of_origin }}</strong></p>
+        <p>Data de lançamento: <strong>{{ data.movie.release_date.split('T')[0] | date: 'dd/MM/yyyy' }}</strong></p>
+    </div>
+</div>

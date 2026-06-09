@@ -87,6 +87,9 @@ export class AdminService {
 
     return this.http.post<any>(`${this.apiUrl}/admin/movies/update/${id}`, movie);
   }
+  deleteMovie(id: number): Observable<any> {
+    return this.http.delete<any>(`${this.apiUrl}/admin/movies/${id}`);
+  }
   getScreenings(): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/admin/screenings`);
   }

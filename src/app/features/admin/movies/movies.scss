@@ -56,6 +56,25 @@
         padding: 1rem;
         translate: 0 100%;
         transition: 0.3s ease;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+        .btns{
+          width: 100%;
+          display: flex;
+          justify-content: space-evenly;
+          gap: 0.5rem;
+          button{
+            background-color: unset;
+            color: white;
+            transition: .3s;
+            &:hover{
+                color: #d0d0d0;
+                scale: 1.1
+            }
+          }
+        }
         h3 {
           font-size: 1rem;
           text-align: center;

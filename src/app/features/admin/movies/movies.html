@@ -7,12 +7,17 @@
     <div class="conteudo-filmes">
         @if (showing().length > 0) {
         @for (movie of showing(); track movie.id) {
-        <a routerLink="editar/{{ movie.id }}" class="filme">
-            <img [src]="storageUrl+'/'+movie.image_url" [alt]="movie.title">
+        <div class="filme">
+            <img [src]="movie.image_url ? storageUrl+'/'+movie.image_url : 'placeholder.png'" [alt]="movie.title">
             <div class="infos">
                 <h3>{{ movie.title }}</h3>
+                <div class="btns">
+                    <button title="Detalhes" (click)="openDialog(movie)" class="btn-detalhes"> <mat-icon>info</mat-icon> </button>
+                    <button title="Editar" routerLink="editar/{{ movie.id }}" class="btn-editar"> <mat-icon>edit</mat-icon> </button>
+                    <button title="Excluir" (click)="deleteMovie(movie.id)" class="btn-excluir"> <mat-icon>delete</mat-icon> </button>
+                </div>
             </div>
-        </a>
+        </div>
         }
         } @else {
         <h3>Nenhum filme em cartaz</h3>
@@ -22,10 +27,15 @@
     <div class="conteudo-filmes">
         @if (comingSoon().length > 0) {
         @for (movie of comingSoon(); track movie.id) {
-        <a routerLink="editar/{{ movie.id }}" class="filme">
-            <img [src]="storageUrl+'/'+movie.image_url" [alt]="movie.title">
+        <a class="filme">
+            <img [src]="movie.image_url ? storageUrl+'/'+movie.image_url : 'placeholder.png'" [alt]="movie.title">
             <div class="infos">
                 <h3>{{ movie.title }}</h3>
+                <div class="btns">
+                    <button title="Detalhes" (click)="openDialog(movie)" class="btn-detalhes"> <mat-icon>info</mat-icon> </button>
+                    <button title="Editar" routerLink="editar/{{ movie.id }}" class="btn-editar"> <mat-icon>edit</mat-icon> </button>
+                    <button title="Excluir" (click)="deleteMovie(movie.id)" class="btn-excluir"> <mat-icon>delete</mat-icon> </button>
+                </div>
             </div>
         </a>
         }
@@ -37,12 +47,17 @@
     <div class="conteudo-filmes">
         @if (offScreen().length > 0) {
         @for (movie of offScreen(); track movie.id) {
-        <a routerLink="editar/{{ movie.id }}" class="filme">
-            <img [src]="storageUrl+'/'+movie.image_url" [alt]="movie.title">
+        <div class="filme">
+            <img [src]="movie.image_url ? storageUrl+'/'+movie.image_url : 'placeholder.png'" [alt]="movie.title">
             <div class="infos">
                 <h3>{{ movie.title }}</h3>
+                <div class="btns">
+                    <button title="Detalhes" (click)="openDialog(movie)" class="btn-detalhes"> <mat-icon>info</mat-icon> </button>
+                    <button title="Editar" routerLink="editar/{{ movie.id }}" class="btn-editar"> <mat-icon>edit</mat-icon> </button>
+                    <button title="Excluir" (click)="deleteMovie(movie.id)" class="btn-excluir"> <mat-icon>delete</mat-icon> </button>
+                </div>
             </div>
-        </a>
+        </div>
         }
         } @else {
         <h3>Nenhum filme fora de cartaz</h3>

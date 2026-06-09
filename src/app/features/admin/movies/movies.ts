@@ -5,6 +5,8 @@ import { ToastrService } from 'ngx-toastr';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterLink } from "@angular/router";
 import { environment } from '../../../../environments/environment';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogMovieInfo } from '../dialog/dialog-movie-info/dialog-movie-info';
 
 @Component({
   selector: 'app-movies',
@@ -20,6 +22,8 @@ export class Movies {
   private adminService = inject(AdminService);
   private toastr = inject(ToastrService);
 
+  constructor(private dialog: MatDialog){}
+
   loadMovies() {
     this.adminService.getMovies().subscribe({
       next: (res) => {
@@ -29,6 +33,23 @@ export class Movies {
       },
       error: (err) => this.toastr.error('Erro ao carregar os filmes'),
     });
+  }
+
+  deleteMovie(id: number) {
+    if(!confirm('Deseja realmente excluir o filme?')) return
+    this.adminService.deleteMovie(id).subscribe({
+      next: () => this.loadMovies(),
+      error: (err) => this.toastr.error(err.error.message),
+    });
+  }
+
+  openDialog(movie: Movie){
+    const dialogRef = this.dialog.open(DialogMovieInfo, {
+      width: '500px',
+      data: {
+        movie: movie,
+      },
+    })
   }
 
   ngOnInit() {
