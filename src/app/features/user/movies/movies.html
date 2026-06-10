@@ -1,14 +1,21 @@
 <article class="page-movies">
   <h1>Lista de filmes</h1>
-  <div class="filtros">
-    <input type="text" />
-    <select formControlName="genre" name="" id="">
-      <option value="" selected disabled>Todos</option>
-      @for (genre of genres(); track genre.id) {
-        <option value="{{ genre.id }}">{{ genre.name }}</option>
-      }
-    </select>
-  </div>
+  <form class="filtros">
+    <mat-form-field>
+      <mat-label><mat-icon>search</mat-icon> Pesquisar por filme</mat-label>
+      <input matInput type="text" placeholder="Pesquisar por filme" formControlName="search" />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label><mat-icon>category</mat-icon> Gênero</mat-label>
+      <mat-select formControlName="genre">
+        <mat-option value="" selected disabled>Todos</mat-option>
+        @for (genre of genres(); track genre.id) {
+          <mat-option [value]="genre.id">{{ genre.name }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+    <button class="btn-buscar" type="submit"><mat-icon>search</mat-icon> Buscar</button>
+  </form>
   <div class="grid-filmes">
     @if (movies().length > 0) {
         @for (movie of movies(); track movie.id) {

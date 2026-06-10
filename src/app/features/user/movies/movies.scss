@@ -6,6 +6,24 @@
     display: flex;
     align-items: center;
     gap: 1rem;
+    mat-form-field{
+      translate: 0 10px
+    }
+    .btn-buscar {
+      width: 130px;
+      background-color: #dd0a0a;
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.5rem;
+      transition: 0.3s;
+      &:hover {
+        background-color: darkred;
+      }
+    }
   }
   .grid-filmes {
     display: grid;
@@ -16,9 +34,9 @@
       position: relative;
       border: solid 1px #404040;
       border-radius: 10px;
-      transition: .3s ease;
+      transition: 0.3s ease;
       &:hover {
-        border-color: #DD0A0A;
+        border-color: #dd0a0a;
         img {
           scale: 1.1;
         }

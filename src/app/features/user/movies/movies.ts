@@ -4,10 +4,14 @@ import { ApiService } from '../../../core/services/api.service';
 import { ToastrService } from 'ngx-toastr';
 import { RouterLink } from "@angular/router";
 import { environment } from '../../../../environments/environment';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
 
 @Component({
   selector: 'app-movies',
-  imports: [RouterLink],
+  imports: [RouterLink, MatFormFieldModule, MatInputModule, MatIconModule, MatSelectModule],
   templateUrl: './movies.html',
   styleUrl: './movies.scss',
 })
