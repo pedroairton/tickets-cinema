@@ -13,7 +13,7 @@
     @if (movies().length > 0) {
         @for (movie of movies(); track movie.id) {
             <a [routerLink]="movie.slug" class="filme">
-                <img [src]="movie.image_url" [alt]="movie.title">
+                <img [src]="movie.image_url ? storageUrl+'/'+movie.image_url : 'placeholder.png'" [alt]="movie.title">
                 <div class="infos">
                     <h3>{{ movie.title }}</h3>
                 </div>

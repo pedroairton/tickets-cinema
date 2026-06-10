@@ -1,4 +1,7 @@
 <article class="page-movies">
+    @if (isLoading()) {
+        <app-loading></app-loading>
+    }
     <div class="topo">
         <h1>Filmes</h1>
         <button routerLink="novo" class="btn-novo"> <mat-icon>add</mat-icon> Novo Filme</button>

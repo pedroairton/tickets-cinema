@@ -2,37 +2,51 @@
   <div class="data">
     <h2>Escolha uma data</h2>
     <div class="conteudo-data">
-      <h1>{{ today.split('-')[2] }}/{{ today.split('-')[1] }}</h1>
-      <input type="date" name="" id="" />
+      <h1>{{ date().split('-')[2] }}/{{ date().split('-')[1] }}</h1>
+      <form [formGroup]="dateForm" (ngSubmit)="onSubmit()">
+        <mat-form-field>
+          <mat-label>Escolha uma data</mat-label>
+          <input formControlName="date" matInput [matDatepicker]="picker" />
+          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        <button><mat-icon>search</mat-icon> Buscar</button>
+      </form>
     </div>
   </div>
   <div class="sessoes">
     <!-- date pipe -->
-    <h2>Sessões disponíveis em {{ today | date: 'dd/MM/yyyy' }}</h2>
+    <h2>Sessões disponíveis em {{ date() | date: 'dd/MM/yyyy' }}</h2>
     <div class="conteudo-sessoes">
-      @for (movie of movies(); track movie.id) {
-        <div class="sessao">
-          <div class="img">
-            <img
-            [src]="movie.image_url"
-              alt="Imagem do filme"
-            />
-          </div>
-          <div class="infos-filme">
-            <h3 class="nome-filme">{{ movie.title }}<span class="duracao-filme">{{ convertMinutes(movie.duration_minutes) }}</span></h3>
-            <small class="genero-filme">{{ movie.genres.map((genre) => genre.name).join(', ') }}</small>
-            <p class="sinopse-filme">
-              {{ movie.synopsis }}
-            </p>
-            <div class="horarios">
-              @for (screening of movie.available_screenings; track screening.id) {
-                <a routerLink="/sessoes/{{ screening.id }}">
-                  <button>{{ screening.start_time | date: 'HH:mm' }}</button>
-                </a>
-              }
+      @if (movies().length > 0) {
+        @for (movie of movies(); track movie.id) {
+          <div class="sessao">
+            <div class="img">
+              <img [src]="movie.image_url ? storageUrl+'/'+movie.image_url : 'placeholder.png'" [alt]="movie.title" />
+            </div>
+            <div class="infos-filme">
+              <h3 class="nome-filme">
+                {{ movie.title
+                }}<span class="duracao-filme">{{ convertMinutes(movie.duration_minutes) }}</span>
+              </h3>
+              <small class="genero-filme">{{
+                movie.genres.map((genre) => genre.name).join(', ')
+              }}</small>
+              <p class="sinopse-filme">
+                {{ movie.synopsis }}
+              </p>
+              <div class="horarios">
+                @for (screening of movie.available_screenings; track screening.id) {
+                  <a routerLink="/sessoes/{{ screening.id }}">
+                    <button>{{ screening.start_time | date: 'HH:mm' }}</button>
+                  </a>
+                }
+              </div>
             </div>
           </div>
-        </div>
+        }
+      } @else {
+        <h3>Nenhuma sessão disponível para esta data</h3>
       }
     </div>
   </div>

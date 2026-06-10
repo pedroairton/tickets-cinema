@@ -21,7 +21,7 @@
           <mat-label><mat-icon>category</mat-icon>Gêneros</mat-label>
           <mat-select formControlName="genres_ids" multiple>
             @for (genre of genres(); track genre.id) {
-              <mat-option value="{{ genre.id }}">{{ genre.name }}</mat-option>
+              <mat-option [value]="genre.id" ]>{{ genre.name }}</mat-option>
             }
           </mat-select>
         </mat-form-field>
@@ -100,8 +100,8 @@
       </mat-radio-group>
     </div>
     <div class="btns">
-      <button type="submit" class="btn-salvar">Salvar</button>
-      <button type="button" class="btn-cancelar">Cancelar</button>
+      <button type="submit" class="btn-salvar"><mat-icon>save</mat-icon> Salvar</button>
+      <button type="button" class="btn-cancelar" (click)="cancel()"><mat-icon>cancel</mat-icon> Cancelar</button>
     </div>
   </form>
 </article>

@@ -1,4 +1,7 @@
 <article class="page-screenings">
+    @if (isLoading()) {
+        <app-loading></app-loading>
+    }
     <div class="topo">
         <h1>Sessões</h1>
         <button routerLink="novo" class="btn-novo" (click)="openDialog()"> <mat-icon>add</mat-icon> Nova Sessão</button>

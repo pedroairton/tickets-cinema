@@ -6,6 +6,7 @@ import { ActivatedRoute } from '@angular/router';
 import {MatExpansionModule} from '@angular/material/expansion';
 import { MovieScreeningResponse } from '../../../core/models/responses.model';
 import { DatePipe } from '@angular/common';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-movie-detail',
@@ -20,6 +21,7 @@ export class MovieDetail {
   readonly panelOpenState = signal(false);
   private apiService = inject(ApiService);
   private toastr = inject(ToastrService);
+  storageUrl = environment.storageUrl
 
   constructor(private route: ActivatedRoute) {
     this.slug = this.route.snapshot.paramMap.get('slug') as string;

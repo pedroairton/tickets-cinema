@@ -1,13 +1,21 @@
 import { Component, inject, signal } from '@angular/core';
 import { AdminService } from '../../../core/services/admin.service';
 import { ToastrService } from 'ngx-toastr';
-import { Dashboard, DashboardPopularTime, DashboardSummary, DashboardTopGenre, DashboardTopMovie } from '../../../core/models/dashboard.model';
+import {
+  Dashboard,
+  DashboardPopularTime,
+  DashboardSummary,
+  DashboardTopGenre,
+  DashboardTopMovie,
+} from '../../../core/models/dashboard.model';
 import { MatIconModule } from '@angular/material/icon';
 import { CurrencyPipe } from '@angular/common';
+import { LoadingComponent } from '../../../shared/loading/loading.component';
+import { forkJoin } from 'rxjs';
 
 @Component({
   selector: 'app-dashboard',
-  imports: [MatIconModule, CurrencyPipe],
+  imports: [MatIconModule, CurrencyPipe, LoadingComponent],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss',
 })
@@ -16,85 +24,109 @@ export class DashboardComponent {
     summary: null,
     topMovies: null,
     popularTimes: null,
-    topGenres: null
-  })
+    topGenres: null,
+  });
+  isLoading = signal(false);
 
-  private adminService = inject(AdminService)
-  private toastr = inject(ToastrService)
+  private adminService = inject(AdminService);
+  private toastr = inject(ToastrService);
 
-  ngOnInit(){
-    this.loadDashboardSummary()
-    this.loadDashboardTopMovies()
-    this.loadDashboardPopularTimes()
-    this.loadDashboardTopGenres()
+  ngOnInit() {
+    this.loadDashboard();
   }
-  loadDashboardSummary(){
+  loadDashboard() {
+    this.isLoading.set(true);
+
+    forkJoin({
+      summary: this.adminService.getDashboardSummary(),
+      topMovies: this.adminService.getDashboardTopMovies(),
+      popularTimes: this.adminService.getDashboardPopularTimes(),
+      topGenres: this.adminService.getDashboardTopGenres(),
+    }).subscribe({
+      next: (res) => {
+        this.dashboard.set({
+          summary: res.summary.data,
+          topMovies: res.topMovies.data,
+          popularTimes: res.popularTimes.data,
+          topGenres: res.topGenres.data,
+        });
+
+        this.isLoading.set(false);
+      },
+      error: (err) => {
+        console.error(err);
+        this.toastr.error('Erro ao carregar dashboard');
+        this.isLoading.set(false);
+      },
+    });
+  }
+  loadDashboardSummary() {
     this.adminService.getDashboardSummary().subscribe({
-      next: (res: {data: DashboardSummary}) => {
-        this.dashboard.update(state => {
+      next: (res: { data: DashboardSummary }) => {
+        this.dashboard.update((state) => {
           return {
             ...state,
-            summary: res.data
-          }
-        })
+            summary: res.data,
+          };
+        });
         console.log(this.dashboard());
       },
 
       error: (err) => {
         console.log(err);
         this.toastr.error('Erro ao carregar o sumário');
-      }
-    })
+      },
+    });
   }
-  loadDashboardTopMovies(){
+  loadDashboardTopMovies() {
     this.adminService.getDashboardTopMovies().subscribe({
-      next: (res: {data: DashboardTopMovie[]}) => {
+      next: (res: { data: DashboardTopMovie[] }) => {
         console.log(res);
-        this.dashboard.update(state => {
+        this.dashboard.update((state) => {
           return {
             ...state,
-            topMovies: res.data
-          }
-        })
+            topMovies: res.data,
+          };
+        });
       },
       error: (err) => {
         console.log(err);
         this.toastr.error('Erro ao carregar os filmes mais vendidos');
-      }
-    })
+      },
+    });
   }
-  loadDashboardPopularTimes(){
+  loadDashboardPopularTimes() {
     this.adminService.getDashboardPopularTimes().subscribe({
-      next: (res: {data: DashboardPopularTime[]}) => {
+      next: (res: { data: DashboardPopularTime[] }) => {
         console.log(res);
-        this.dashboard.update(state => {
+        this.dashboard.update((state) => {
           return {
             ...state,
-            popularTimes: res.data
-          }
-        })
+            popularTimes: res.data,
+          };
+        });
       },
       error: (err) => {
         console.log(err);
         this.toastr.error('Erro ao carregar as horas mais populares');
-      }
-    })
+      },
+    });
   }
-  loadDashboardTopGenres(){
+  loadDashboardTopGenres() {
     this.adminService.getDashboardTopGenres().subscribe({
-      next: (res: {data: DashboardTopGenre[]}) => {
+      next: (res: { data: DashboardTopGenre[] }) => {
         console.log(res);
-        this.dashboard.update(state => {
+        this.dashboard.update((state) => {
           return {
             ...state,
-            topGenres: res.data
-          }
-        })
+            topGenres: res.data,
+          };
+        });
       },
       error: (err) => {
         console.log(err);
         this.toastr.error('Erro ao carregar os gêneros mais vendidos');
-      }
-    })
+      },
+    });
   }
 }

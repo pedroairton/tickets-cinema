@@ -2,7 +2,7 @@
   @if (movie()) {
     <div class="infos-filme">
       @if (movie()?.image_url) {
-        <img class="img-filme" [src]="movie()?.image_url" [alt]="movie()?.title" />
+        <img class="img-filme" [src]="storageUrl+'/'+movie()?.image_url" [alt]="movie()?.title" />
       } @else {
         <img class="img-filme" src="placeholder.png" [alt]="movie()?.title" />
       }
@@ -45,7 +45,7 @@
               <p>Diretor: {{ movie()?.director }}</p>
               <p>Distribuidor(a): {{ movie()?.distributor }}</p>
               <p>País de origem: {{ movie()?.country_of_origin }}</p>
-              <p>Data de lançamento: {{ movie()?.release_date }}</p>
+              <p>Data de lançamento: {{ movie()?.release_date | date: 'dd/MM/yyyy' }}</p>
               <p>Classificação Indicativa: {{ movie()?.age_rating }}</p>
             </div>
           </mat-expansion-panel>

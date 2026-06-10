@@ -157,6 +157,9 @@ export class MovieDetail {
     this.mainImageFile = null;
     this.mainImagePreview = null;
   }
+  cancel() {
+    this.router.navigate(['/admin/filmes']);
+  }
   private buildFormData(): FormData {
     const formData = new FormData();
 

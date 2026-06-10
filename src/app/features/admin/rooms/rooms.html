@@ -1,4 +1,7 @@
 <article class="page-rooms">
+    @if (isLoading()) {
+        <app-loading></app-loading>
+    }
     <h1>Salas</h1>
     <div class="conteudo-salas">
         @for (room of rooms(); track room.id) {

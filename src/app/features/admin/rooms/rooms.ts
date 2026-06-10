@@ -4,15 +4,17 @@ import { AdminService } from '../../../core/services/admin.service';
 import { ToastrService } from 'ngx-toastr';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogRooms } from '../dialog/dialog-rooms/dialog-rooms';
+import { LoadingComponent } from "../../../shared/loading/loading.component";
 
 @Component({
   selector: 'app-rooms',
-  imports: [],
+  imports: [LoadingComponent],
   templateUrl: './rooms.html',
   styleUrl: './rooms.scss',
 })
 export class Rooms {
   rooms = signal<Room[]>([]);
+  isLoading = signal(false);
   private adminService = inject(AdminService);
   private toastr = inject(ToastrService);
 
@@ -22,8 +24,10 @@ export class Rooms {
     this.loadRooms();
   }
   loadRooms() {
+    this.isLoading.set(true);
     this.adminService.getRooms().subscribe({
       next: (res: { data: Room[] }) => {
+        this.isLoading.set(false);
         this.rooms.set(res.data);
         console.log(this.rooms);
       },
@@ -31,6 +35,7 @@ export class Rooms {
       error: (err) => {
         console.log(err);
         this.toastr.error('Erro ao carregar as salas');
+        this.isLoading.set(false);
       },
     });
   }

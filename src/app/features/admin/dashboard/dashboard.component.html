@@ -1,6 +1,9 @@
 <article class="page-dashboard">
+  @if (isLoading()) {
+    <app-loading></app-loading>
+  }
   <h1>Dashboard</h1>
-  <select name="period" id="period">
+  <select class="periodo" name="period" id="period">
     <option value="total">Total</option>
     <option value="week">Semana</option>
     <option value="month">Mês</option>

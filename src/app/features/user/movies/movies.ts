@@ -3,6 +3,7 @@ import { Genre, Movie } from '../../../core/models/movie.model';
 import { ApiService } from '../../../core/services/api.service';
 import { ToastrService } from 'ngx-toastr';
 import { RouterLink } from "@angular/router";
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-movies',
@@ -15,6 +16,7 @@ export class Movies {
   movies = signal<Movie[]>([])
   private apiService = inject(ApiService)
   private toastr = inject(ToastrService)
+  storageUrl = environment.storageUrl
   ngOnInit() {
     this.loadGenres()
     this.loadMovies()

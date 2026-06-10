@@ -40,18 +40,18 @@
           align-items: center;
           gap: 0.5rem;
           scale: 0;
-          transition: .3s
+          transition: 0.3s;
         }
-        &:hover{
-          .img-label{
+        &:hover {
+          .img-label {
             scale: 1;
             background-color: rgba(0, 0, 0, 0.25);
           }
-          .btn-remover{
+          .btn-remover {
             scale: 1;
           }
         }
-        .btn-remover{
+        .btn-remover {
           width: 2rem;
           height: 2rem;
           border-radius: 50%;
@@ -63,7 +63,7 @@
           display: flex;
           align-items: center;
           justify-content: center;
-          transition: .3s;
+          transition: 0.3s;
           scale: 0;
         }
       }
@@ -77,6 +77,34 @@
     .status {
       span {
         color: white;
+      }
+    }
+    .btns {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      button {
+        width: 130px;
+        color: white;
+        padding: 0.5rem 1rem;
+        border-radius: 5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 0.5rem;
+        transition: .3s;
+        &.btn-salvar{
+          background-color: green;
+          &:hover{
+            background-color: darkgreen;
+          }
+        }
+        &.btn-cancelar{
+          background-color: #dd0a0a;
+          &:hover{
+            background-color: darkred;
+          }
+        }
       }
     }
   }
