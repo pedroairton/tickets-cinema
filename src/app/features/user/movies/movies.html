@@ -1,11 +1,11 @@
 <article class="page-movies">
   <h1>Lista de filmes</h1>
-  <form class="filtros">
+  <form class="filtros" [formGroup]="filterForm" (ngSubmit)="search()">
     <mat-form-field>
       <mat-label><mat-icon>search</mat-icon> Pesquisar por filme</mat-label>
-      <input matInput type="text" placeholder="Pesquisar por filme" formControlName="search" />
+      <input matInput type="text" placeholder="Pesquisar por filme" formControlName="input" (change)="search()" />
     </mat-form-field>
-    <mat-form-field>
+    <!-- <mat-form-field>
       <mat-label><mat-icon>category</mat-icon> Gênero</mat-label>
       <mat-select formControlName="genre">
         <mat-option value="" selected disabled>Todos</mat-option>
@@ -13,7 +13,7 @@
           <mat-option [value]="genre.id">{{ genre.name }}</mat-option>
         }
       </mat-select>
-    </mat-form-field>
+    </mat-form-field> -->
     <button class="btn-buscar" type="submit"><mat-icon>search</mat-icon> Buscar</button>
   </form>
   <div class="grid-filmes">

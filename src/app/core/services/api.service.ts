@@ -24,6 +24,9 @@ export class ApiService {
   getMovies(params?: any): Observable<Movie[]> {
     return this.http.get<Movie[]>(`${this.apiUrl}/movies`, { params });
   }
+  searchMovies(title: string): Observable<Movie[]> {
+    return this.http.get<Movie[]>(`${this.apiUrl}/movies/search?input=${title}`);
+  }
   getMovie(slug: string): Observable<Movie> {
     return this.http.get<Movie>(`${this.apiUrl}/movies/${slug}`);
   }
