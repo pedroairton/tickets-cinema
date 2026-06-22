@@ -30,9 +30,13 @@ export class Login {
   login(){
     if(this.loginForm.valid){
       this.authService.login(this.loginForm.value).subscribe({
-        next: () => {
+        next: (res) => {
           this.toastr.success('Login realizado com sucesso!', 'Sucesso!');
-          this.router.navigate(['/admin/dashboard']);
+          if(res.user.role === 'admin'){
+            this.router.navigate(['/admin/dashboard']);
+          } else {
+            this.router.navigate(['/user/home']);
+          }
         }, error: (err) => {
           console.log(err);
           this.toastr.error('Email ou senha inválidos!', 'Erro!');

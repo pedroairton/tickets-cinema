@@ -26,4 +26,33 @@ header{
             text-transform: uppercase;
         }
     }
+    .perfil{
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        position: relative;
+        
+        h3{
+            color: white;
+        }
+        .drop{
+            width: 100%;
+            // display: none;
+            flex-direction: column;
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+            position: absolute;
+            top: 2rem;
+            right: 0;
+            background-color: #d42124;
+            // padding: 1rem;
+            border-radius: 5px;
+            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+            button{
+                width: 100%;
+                background-color: inherit;
+                color: white;
+                padding: 0.5rem 0;
+            }
+        }
+    }
 }

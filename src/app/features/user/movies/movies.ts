@@ -55,7 +55,9 @@ export class Movies {
     })
   }
   search(){
+    if(this.filterForm.value.input!.length < 3) return
     if (!this.filterForm.valid) {
+      alert('Preencha corretamente o campo de busca');
       return;
     }
     this.apiService.searchMovies(this.filterForm.value.input as string).subscribe({

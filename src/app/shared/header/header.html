@@ -5,11 +5,28 @@
     <nav>
         <a routerLink="/">Home</a>
         <a routerLink="/filmes">Filmes</a>
-        <a routerLink="/historico">Histórico</a>
+        @if(user) {
+            <a routerLink="/historico">Histórico</a>
+        }
     </nav>
+    @if (!user) {
     <div class="login">
         <a routerLink="/login">
             <button>Entrar</button>
         </a>
     </div>
+    } @else {
+    <div class="perfil">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-person-circle"
+            viewBox="0 0 16 16">
+            <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
+            <path fill-rule="evenodd"
+                d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1" />
+        </svg>
+        <h3 class="nome">{{ user.name }}</h3>
+        <div class="drop">
+            <button (click)="logout()">Logout</button>
+        </div>
+    </div>
+    }
 </header>
