@@ -80,3 +80,51 @@
     }
   }
 }
+
+@media (max-width: 1368px){
+  .page-screenings{
+    .conteudo{
+      .data{
+        .salas{
+          grid-template-columns: repeat(4,1fr);
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 1024px){
+  .page-screenings{
+    .conteudo{
+      .data{
+        .salas{
+          grid-template-columns: repeat(3,1fr);
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 768px){
+  .page-screenings{
+    .conteudo{
+      .data{
+        .salas{
+          grid-template-columns: repeat(2,1fr);
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 580px){
+  .page-screenings{
+    .conteudo{
+      .data{
+        .salas{
+          grid-template-columns: repeat(1,1fr);
+        }
+      }
+    }
+  }
+}

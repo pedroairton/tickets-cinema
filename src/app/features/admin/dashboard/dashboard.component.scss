@@ -82,3 +82,11 @@
     }
   }
 }
+
+@media(max-width: 1368px){
+    .page-dashboard{
+        .cards-dashboard, .listas{
+          gap: 1rem;
+        }
+    }
+}

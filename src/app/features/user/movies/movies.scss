@@ -69,3 +69,35 @@
     }
   }
 }
+
+@media (max-width: 1368px){
+  .page-movies{
+    .grid-filmes{
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+}
+
+@media (max-width: 1024px){
+  .page-movies{
+    .grid-filmes{
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+}
+
+@media (max-width: 580px){
+  .page-movies{
+    .filtros{
+      margin: 0 auto;
+      width: fit-content;
+      flex-direction: column;
+      .btn-buscar{
+        width: 100%;
+      }
+    }
+    .grid-filmes{
+      grid-template-columns: repeat(1, 1fr);
+    }
+  }
+}

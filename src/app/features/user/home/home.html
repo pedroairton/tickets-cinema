@@ -19,34 +19,36 @@
     <h2>Sessões disponíveis em {{ date() | date: 'dd/MM/yyyy' }}</h2>
     <div class="conteudo-sessoes">
       @if (movies().length > 0) {
-        @for (movie of movies(); track movie.id) {
-          <div class="sessao">
-            <div class="img">
-              <img [src]="movie.image_url ? storageUrl+'/'+movie.image_url : 'placeholder.png'" [alt]="movie.title" />
-            </div>
-            <div class="infos-filme">
-              <h3 class="nome-filme">
-                {{ movie.title
-                }}<span class="duracao-filme">{{ convertMinutes(movie.duration_minutes) }}</span>
-              </h3>
-              <small class="genero-filme">{{
-                movie.genres.map((genre) => genre.name).join(', ')
-              }}</small>
-              <p class="sinopse-filme">
-                {{ movie.synopsis }}
-              </p>
-              <div class="horarios">
-                @for (screening of movie.available_screenings; track screening.id) {
-                  <a routerLink="/sessoes/{{ screening.id }}">
-                    <button>{{ screening.start_time | date: 'HH:mm' }}</button>
-                  </a>
-                }
-              </div>
-            </div>
+      @for (movie of movies(); track movie.id) {
+      <div class="sessao">
+        <div class="img">
+          <img [src]="movie.image_url ? storageUrl+'/'+movie.image_url : 'placeholder.png'" [alt]="movie.title" />
+        </div>
+        <div class="infos-filme">
+          <div class="topo-filme">
+            <h3 class="nome-filme">
+              {{ movie.title}}
+            </h3>
+            <span class="duracao-filme">{{ convertMinutes(movie.duration_minutes) }}</span>
           </div>
-        }
+          <small class="genero-filme">{{
+            movie.genres.map((genre) => genre.name).join(', ')
+            }}</small>
+          <p class="sinopse-filme">
+            {{ movie.synopsis }}
+          </p>
+          <div class="horarios">
+            @for (screening of movie.available_screenings; track screening.id) {
+            <a routerLink="/sessoes/{{ screening.id }}">
+              <button>{{ screening.start_time | date: 'HH:mm' }}</button>
+            </a>
+            }
+          </div>
+        </div>
+      </div>
+      }
       } @else {
-        <h3>Nenhuma sessão disponível para esta data</h3>
+      <h3>Nenhuma sessão disponível para esta data</h3>
       }
     </div>
   </div>

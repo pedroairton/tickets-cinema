@@ -83,3 +83,35 @@
     }
   }
 }
+
+@media (max-width: 1368px){
+  .page-movies{
+    .conteudo-filmes{
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+}
+
+@media (max-width: 1024px){
+  .page-movies{
+    .conteudo-filmes{
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+}
+
+@media (max-width: 768px){
+  .page-movies{
+    .conteudo-filmes{
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+}
+
+@media (max-width: 580px){
+  .page-movies{
+    .conteudo-filmes{
+      grid-template-columns: repeat(1, 1fr);
+    }
+  }
+}

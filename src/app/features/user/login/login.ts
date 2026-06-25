@@ -20,6 +20,7 @@ export class Login {
   private authService = inject(AuthService);
   private toastr = inject(ToastrService);
   private router = inject(Router);
+  isSubmitting = false
 
   constructor() {
     this.loginForm = this.fb.group({
@@ -28,9 +29,12 @@ export class Login {
     })
   }
   login(){
+    if(this.isSubmitting) return
+    this.isSubmitting = true
     if(this.loginForm.valid){
       this.authService.login(this.loginForm.value).subscribe({
         next: (res) => {
+          this.isSubmitting = false
           this.toastr.success('Login realizado com sucesso!', 'Sucesso!');
           if(res.user.role === 'admin'){
             this.router.navigate(['/admin/dashboard']);
@@ -39,6 +43,7 @@ export class Login {
           }
         }, error: (err) => {
           console.log(err);
+          this.isSubmitting = false
           this.toastr.error('Email ou senha inválidos!', 'Erro!');
         }
       })
