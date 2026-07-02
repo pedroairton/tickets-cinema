@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Ticket } from '../../../core/models/history.model';
 
 @Component({
   selector: 'app-history',
@@ -6,4 +7,6 @@ import { Component } from '@angular/core';
   templateUrl: './history.html',
   styleUrl: './history.scss',
 })
-export class History {}
+export class History {
+  tickets: Ticket[] = [];
+}
