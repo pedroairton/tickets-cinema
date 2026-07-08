@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Ticket } from '../../../core/models/history.model';
+import { ApiService } from '../../../core/services/api.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-history',
@@ -9,4 +11,19 @@ import { Ticket } from '../../../core/models/history.model';
 })
 export class History {
   tickets: Ticket[] = [];
+  private apiService = inject(ApiService)
+  private toastr = inject(ToastrService)
+
+  ngOnInit() {
+    this.apiService.getTickets().subscribe({
+      next: (res: any) => {
+        this.tickets = res.data;
+        console.log(this.tickets);
+      },
+      error: (err) => {
+        this.toastr.error(err.error.message);
+        console.error(err);
+      }
+    })
+  }
 }

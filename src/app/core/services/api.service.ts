@@ -42,5 +42,7 @@ export class ApiService {
   createOrder(data: CreateOrderRequest) {
     return this.http.post<OrderResponse>(`${this.apiUrl}/orders`, data);
   }
-
+  getTickets() {
+    return this.http.get(`${this.apiUrl}/tickets`);
+  }
 }
