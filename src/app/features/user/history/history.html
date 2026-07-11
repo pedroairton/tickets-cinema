@@ -1,3 +1,31 @@
 <article class="page-history">
-    <h2>Histórico</h2>
+  <h2>Seu Histórico</h2>
+  <div class="historico">
+    @for (ticket of tickets(); track ticket.id) {
+      <div class="item">
+        <div class="img">
+          <img
+            [src]="
+              ticket.screening.movie.image_url
+                ? storageUrl + '/' + ticket.screening.movie.image_url
+                : 'placeholder.png'
+            "
+            alt=""
+          />
+        </div>
+        <div class="infos">
+          <h3 class="titulo">{{ ticket.screening.movie.title }}</h3>
+          <span class="data">
+            {{ ticket.screening.start_time | date: 'HH:mm' }} -
+            {{ ticket.screening.end_time | date: 'HH:mm' }}
+            | {{ ticket.screening.start_time | date: 'dd/MM/yyyy' }}
+          </span>
+          <span class="sala">{{ ticket.screening.room.name }}</span>
+          <span class="ticket-code"
+            ><b>{{ ticket.code }}</b></span
+          >
+        </div>
+      </div>
+    }
+  </div>
 </article>
